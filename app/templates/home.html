@@ -1,0 +1,15 @@
+<!--home.html-->
+{% extends 'base.html' %}
+{% block title %}木犀图书{% endblock %}
+{% block page_content %}
+<div class="newbook">
+  <h2>最近录入</h2>
+  {% for book in new_book_list %}
+    <img src={{ book.image }}>
+    <h3>书名：{{ book.name }}</h3>
+    <h3>类别: {{ book.tag }}</h3>
+    <h3>简介: {{ book.summary }}</h3>
+    <hr/>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!--login.html-->
+{% extends 'base.html' %}
+{% block title %}木犀登录{% endblock %}
+{% block page_content %}
+ <div class="form">
+  <head>木犀登录</head>
+  <hr/>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      {{ form.username.label }} {{ form.username }}<br/>
+      {{ form.password.label }} {{ form.password }}<br/>
+      {{ form.remember_me }}
+      {{ form.submit }}
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!--user.html-->
+{% extends 'base.html' %}
+{% block title %}用户主页{% endblock %}
+{% block page_content %}
+  <div class="user">
+    {% if current_user.is_authenticated() %}
+      <h1>{{ username }} 的主页</h1>
+    {% else %}
+      <h1>请先登录，好让我认识你</h1>
+    {% endif %}
+  </div>
+  <div class='get'>
+    {% for book in user_get_book %}
+    <li>
+      <img src={{ book.image }}>
+      <h3>书名：{{ book.name }}</h3>
+      <h3>到期：{{ book.end }}</h3>
+      <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.back}}
+      </form>
+      <hr/>
+    </li>
+    {% endfor %}
+  </div>
+{% endblock %}

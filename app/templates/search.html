@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}木犀搜索{% endblock %}
+{% block page_content %}
+<div class="search">
+    <form method="post">
+      {{ form.hidden_tag() }}
+      {{ form.search }}
+      {{ form.submit }}
+    </form>
+    <hr/>
+    <p>关于搜索：搜索支持两种模式：1.全名搜索(ex: Python核心编程（第二版）),
+       2.类别搜索(ex: 后台),目前类别(后台、前端、设计、互联网、其他)</p>
+</div>
+{% endblock %}
