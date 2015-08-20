@@ -1,20 +1,20 @@
 #bgimage{
-	background: #eee url(../image/bgimage.png);
-	width: 1100px;
-	height: 32px;
+	background-image: url(../image/bgimage.png);
+	height: 100px;
+
 }
 #container{
 	margin: 0 auto;
 	width: 1100px;
 	font-family: 微软雅黑;
 	background-color: #eee;
+	border: transparent solid;
 }
 a{
 	text-decoration: none;
 }
 a:hover{
-	text-decoration: underline;
-	color: green;
+	color: #fff843;
 }
 .header{
 	width: 1100px;
@@ -22,7 +22,7 @@ a:hover{
 	display: table-cell;
 	vertical-align: middle;
 	height: 100px;
-
+	
 }
 .header nav{
 	background-color: #332a1c;
@@ -30,19 +30,19 @@ a:hover{
 	height: 80px;
 }
 .menu{
-	padding-left:300px;
+	padding-left:300px; 
 
 }
 nav li{
 	display: inline-block;
 	list-style:none;
 	text-align: center;
-	margin:3px 23px 0 30px;
+	margin-top: 3px;
+	width: 125px;
 }
 nav li a{
 	display: block;
 	color: white;
-	width: 73px;
 	font-size: 15px;
 	line-height: 77px;
 	text-decoration: none;
@@ -102,37 +102,38 @@ li:visited{
 	color: #fff843;
 	padding: 11px 0 4px;
 	width: 167px;
-
 }
 .author{
 	font-size: 12px;
 	color: #6e6961;
-	padding-left: -20px;
+}
+.author_hid{
+	font-size: 12px;
+	color: #6e6961;
+	width: 167px;
 }
 .book_information_1{
 	background-color: #332a1c;
-	height: 225px;
+	height:225px;
 	margin-top: -225px;
 	display: none;
 	z-index: 99999;
 	position: relative;
 }
-
 .right{
 	width: 190px;
 	float: left;
-	margin:50px 0 5px 98px;
+	margin:50px 0 5px 98px; 
 }
 .zhanwei{
 	margin-top:710px;
 	height: 1px;
 }
 .days{
-	border-top:#6e6961 2px solid;
+	border-top:#6e6961 2px solid; 
 	margin-top: 10px;
 }
 .days p{
 	color: white;
-	margin-top: 40px;
-	font-size: 12px;
+	margin-top:40px;
 }
