@@ -168,14 +168,13 @@ def user(username):
     time_done_book = []
     form_list = []
 
-    for book in user_get_book:
-        if (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
-            datetime.datetime.now()).total_seconds() <= 3*24*60*60:
+    for n, book in enumerate(user_get_book):
+        delta = (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
+            datetime.datetime.now()).total_seconds()
+        if delta <= 3*24*60*60 and delta > 0:
             time_done_book.append(book)
-        if (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
-            datetime.datetime.now()).total_seconds() == 0:
-            book.status = False
-            book.user_id = None
+        if delta <= 0:
+            flash("%s 已经到期啦!" % book.name)
             book.end = None
 
     for book in user_get_book:
