@@ -172,6 +172,11 @@ def user(username):
         if (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
             datetime.datetime.now()).total_seconds() <= 3*24*60*60:
             time_done_book.append(book)
+        if (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
+            datetime.datetime.now()).total_seconds() == 0:
+            book.status = False
+            book.user_id = None
+            book.end = None
 
     for book in user_get_book:
         form = BackForm()
