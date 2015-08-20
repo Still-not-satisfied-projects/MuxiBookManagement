@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}<title>木犀搜索</title>{% endblock %}
+{% block title %}<title>图书信息</title>{% endblock %}
 
 {% block css_file %}
   <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
@@ -7,21 +7,20 @@
 {% endblock %}
 
 {% block page_content %}
-<div class="search">
+  <div class='info'>
+    <img src={{ book.image }}>
+    <h3>{{ book.name }}</h3>
+    <h3>{{ book.author }}</h3>
+    <h3>{{ book.summary}}</h3>
+  </div>
+  {% if book.status == False %}
     <form method="post">
       {{ form.hidden_tag() }}
-      {{ form.search }}
-      {{ form.status1.label }}{{ form.status1 }}
-      {{ form.status2.label }}{{ form.status2 }}
+      {{ form.day }}
       {{ form.submit }}
     </form>
-    <hr/>
-    <p>
-    关于搜索：搜索支持两种模式：1.全名搜索(ex: Python核心编程（第二版）),
-            2.类别搜索(ex: 后台),目前类别(后台、前端、设计、互联网、其他)
-    </p>
-</div>
-{% endblock %}
+  {% endif %}
+{% endblock%}
 
 {% block script_file %}
   <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>

@@ -1,15 +1,74 @@
 <!--home.html-->
 {% extends 'base.html' %}
-{% block title %}木犀图书{% endblock %}
+
+{% block title %}<title>木犀图书</title>{% endblock %}
+
+{% block css_file %}
+  <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block page_content %}
-<div class="newbook">
-  <h2>最近录入</h2>
-  {% for book in new_book_list %}
-    <img src={{ book.image }}>
-    <h3>书名：{{ book.name }}</h3>
-    <h3>类别: {{ book.tag }}</h3>
-    <h3>简介: {{ book.summary }}</h3>
-    <hr/>
-  {% endfor %}
+<div class="left">
+		<p class="content">新增图书</p>
+	{% for book in new_book_list %}
+		<div class="new_book">
+			<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+			<!--显示层-->
+			<div class="book_information">
+				<a href="#">
+					<p class="title">{{ book.name }}</p>
+				 	<p class="author">{{ book.author }}</p>
+				 </a>
+			<!--隐藏层-->
+				<div class="book_information_1">
+					<a href="/info/{{ book.name }}">
+					<p class="title_hid">{{ book.name}}</p>
+				 	<p class="author">{{ book.author }}</p>
+				 </a>
+				 <div class="days">
+				 	<p>
+				    类别：{{ book.tag }}<br/>
+						<br/>
+						{{ book.summary[:100] }}...
+					</p>
+				 </div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 </div>
+
+<div class="right">
+		<span class="content">最近借阅</span>
+		{% for book in get_book_list %}
+		 <div class="new_book">
+			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
+			<div class="book_information">
+				<a href="#">
+					<p class="title">{{ book.name }}</p>
+				</a>
+				 	<p class="author">{{ book.author }}</p>
+
+				<div class="book_information_1 ">
+					<a href="#">
+						<p class="title">{{ book.name }}</p>
+
+						<p class="author">朱承浩</p>
+					</a>
+				 		<div class="days">
+				 			<p>借阅者：{{ book.user.username}}</p>
+							<p>到期时间：{{ book.end }}</p>
+					 	</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<!--占位-->
+</div>
+{% endblock %}
+
+{% block script_file %}
+  <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="/static/js/shouye.js"></script>
 {% endblock %}

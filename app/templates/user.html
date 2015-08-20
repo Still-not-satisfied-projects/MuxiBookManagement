@@ -1,26 +1,70 @@
 <!--user.html-->
 {% extends 'base.html' %}
-{% block title %}用户主页{% endblock %}
+{% block title %}<title>用户主页</title>{% endblock %}
+{% block css_file %}
+  <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
+{% endblock %}
 {% block page_content %}
-  <div class="user">
-    {% if current_user.is_authenticated() %}
-      <h1>{{ username }} 的主页</h1>
-    {% else %}
-      <h1>请先登录，好让我认识你</h1>
-    {% endif %}
-  </div>
-  <div class='get'>
-    {% for book in user_get_book %}
-    <li>
-      <img src={{ book.image }}>
-      <h3>书名：{{ book.name }}</h3>
-      <h3>到期：{{ book.end }}</h3>
-      <form method="post">
-        {{ form.hidden_tag() }}
-        {{ form.back}}
-      </form>
-      <hr/>
-    </li>
-    {% endfor %}
-  </div>
+<div class="left">
+		<span class="content">历史借阅</span>
+		{% for book, form in book_form %}
+		 <div class="new_book">
+			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
+			<div class="book_information">
+				<a href="#">
+					<p class="title">{{ book.name }}</p>
+				</a>
+				 	<p class="author">{{ book.author }}</p>
+
+				<div class="book_information_1 ">
+					<a href="#">
+						<p class="title">{{ book.name }}</p>
+
+						<p class="author">{{ book.author }}</p>
+					</a>
+				 		<div class="days">
+							<p>到期时间：{{ book.end }}</p>
+              <form method="post">
+                {{ form.hidden_tag() }}
+                {{ form.back}}
+              </form>
+					 	</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<!--占位-->
+</div>
+<div class="right">
+		<span class="content">快要过期</span>
+		{% for book in time_done_book %}
+		 <div class="new_book">
+			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
+			<div class="book_information">
+				<a href="#">
+					<p class="title">{{ book.name }}</p>
+				</a>
+				 	<p class="author">{{ book.author }}</p>
+
+				<div class="book_information_1 ">
+					<a href="#">
+						<p class="title">{{ book.name }}</p>
+
+						<p class="author">{{ book.author }}</p>
+					</a>
+				 		<div class="days">
+				 			<p>借阅者：{{ book.user.username}}</p>
+							<p>到期时间：{{ book.end }}</p>
+					 	</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	<!--占位-->
+</div>
+{% endblock %}
+{% block script_file %}
+  <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="/static/js/shouye.js"></script>
 {% endblock %}

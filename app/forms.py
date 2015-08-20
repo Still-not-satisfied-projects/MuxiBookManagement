@@ -15,6 +15,8 @@ from wtforms.validators import Required
 class SearchForm(Form):
     """搜索表单🔍"""
     search = StringField('完整书名or类别名', validators=[Required()])
+    status1 = BooleanField('可借')
+    status2 = BooleanField('全部')
     submit = SubmitField('搜索')
 
 
@@ -43,4 +45,5 @@ class GetForm(Form):
 
 class BackForm(Form):
     """归还表单"""
+    status = BooleanField('归还')
     back = SubmitField('归还此书')

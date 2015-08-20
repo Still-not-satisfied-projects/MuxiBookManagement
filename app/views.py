@@ -42,7 +42,7 @@ def home():
     new_book_list = Book.query.order_by('-id').all()[:6]
     get_book_list = Book.query.filter_by(status=True).order_by('-id').all()[:2]
 
-    return render_template('zhuye.html', new_book_list=new_book_list,
+    return render_template('home.html', new_book_list=new_book_list,
                            get_book_list=get_book_list)
 
 
@@ -60,58 +60,48 @@ def search():
     """
     form = SearchForm()
     if form.validate_on_submit():
+        session['form_status1'] =  form.status1.data
+        session['form_status2'] =  form.status2.data
         query = form.search.data
         return redirect(url_for('search_results', query=query))
     return render_template('search.html', form=form)
 
 
-@app.route('/search_results/<query>', methods=["POST", "GET"])
+@app.route('/search_results/<query>')
 def search_results(query):
     """
     搜索结果页
 
         提供书籍借阅表单
     """
-    form = GetForm()
     get_book_list = []
-    form_list = []
     results = Book.query.whoosh_search(query, app.config['MAX_SEARCH_RESULTS'])
 
     for book in results[:]:
-        if book.status != True:
-        # 跳过不可借阅图书
+        if session['form_status1'] == True:
+            if book.status != True:
+            # 跳过不可借阅图书
+                get_book_list.append(book)
+        if session['form_status2'] == True:
             get_book_list.append(book)
-            form_list.append(form)
-
-    form_and_book_list = zip(form_list, get_book_list)
-
-    for n in range(len(form_list)):
-        """
-        这是发现的第一个重大的bug！，也就是说，for循环在python中是顺序遍历，
-        这也意味着用户也要顺序点击才能将书籍与表单对应，显然，这是不可能的
-        用户需要选择！
-
-        现在必须找到一种方法将用户书籍与表单相对应，问题是如何对应呢？
-
-        我需要一种标记，依靠这种标记我可以获取表单所对应的图书的位置，问题是如果
-        这种标记放在html里，那然后呢？还是我需要一个表单的循环，现在的问题是已经
-        创建了想对应的表单，但这些表单都是平等的也就是说这些表单的眼里没有书，只有
-        用户的post动作，但是又要如何用书的眼光看表单的？
-
-        这是问题的关键：如何用书的眼光去看表单。显然顺序遍历是不行的!
-        """
-        if form_list[n].validate_on_submit():
-            get_book_list[n].status = form.status.data
-            get_book_list[n].user_id = current_user.id
-            day = form.day.data
-            get_book_list[n].end = str(datetime.datetime.now() + datetime.timedelta(day))
-            return redirect(url_for('user', \
-                                    username=current_user.username))
 
     return render_template('search_results.html',
-                           form_and_book=form_and_book_list,
-                           query=query,
-                           form=form)
+                           get_book_list=get_book_list,
+                           query=query)
+
+
+@app.route('/info/<name>', methods=["POST", "GET"])
+def info(name):
+    form = GetForm()
+    book = Book.query.filter_by(name=name).first()
+    if form.validate_on_submit():
+        start = datetime.datetime.now()
+        book.user_id = current_user.id
+        book.status = True  # 已被借
+        day = form.day.data
+        book.end = (start + datetime.timedelta(day)).strftime("%Y-%m-%d %H:%M:%S")
+        return redirect(url_for('user', username=current_user.username))
+    return render_template('info.html', book=book, form=form)
 
 
 @app.route('/bookin', methods=["POST", "GET"])
@@ -132,8 +122,10 @@ def bookin():
         book_id = resp_1['books'][0]['id']
         url = "https://api.douban.com/v2/book/%s" % book_id
         resp_2 = json.loads(urlopen(url).read().decode('utf-8'))
-        book = Book(url=url, name=resp_2['title'], author=resp_2['author'][0], tag=form.tag.data, summary=resp_2['summary'], \
-                   image=resp_2['images'].get('large'), user_id=None, end=None)
+        book = Book(url=url, name=resp_2['title'], author=resp_2['author'][0], \
+                    tag=form.tag.data, summary=resp_2['summary'], \
+                    image=resp_2['images'].get('large'), user_id=None, end=None, \
+                    status=False)
         db.session.add(book)
         db.session.commit()
         flash('书籍已录入！')
@@ -172,17 +164,27 @@ def user(username):
         显示该用户历史借阅
         显示该用户快要过期的书（3天为界）
     """
-    form = BackForm()
-    user_get_book = Book.query.filter_by(user_id=current_user.id)[:6]
+    user_get_book = Book.query.filter_by(user_id=current_user.id).order_by('end')
+    time_done_book = []
+    form_list = []
+
     for book in user_get_book:
-        """还是for循环的bug，简直了！"""
+        if (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
+            datetime.datetime.now()).total_seconds() <= 3*24*60*60:
+            time_done_book.append(book)
+
+    for book in user_get_book:
+        form = BackForm()
+        form_list.append(form)
+
+    book_form = zip(user_get_book, form_list)
+
+    for book, form in book_form:
         if form.validate_on_submit():
-            """归还此图书"""
             book.status = False
-            book.end = None
             book.user_id = None
-            flash('你已归还此书!')
-            return redirect(url_for('user', username=username))
-    return render_template('user.html', username=username,
-                           user_get_book=user_get_book,
-                           form=form)
+            book.end = None
+            return redirect(url_for('user', username=current_user.username))
+
+    return render_template('user.html', username=username, book_form=book_form,
+                           time_done_book=time_done_book[:2])
