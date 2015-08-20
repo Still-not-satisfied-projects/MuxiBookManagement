@@ -24,11 +24,19 @@
 						<p class="author">{{ book.author }}</p>
 					</a>
 				 		<div class="days">
-							<p>到期时间：{{ book.end }}</p>
-              <form method="post">
-                {{ form.hidden_tag() }}
-                {{ form.back}}
-              </form>
+              {% if book.end %}
+							    <p>到期时间：{{ book.end }}</p>
+                  <form method="post">
+                     {{ form.hidden_tag() }}
+                     {{ form.back}}
+                   </form>
+              {% else %}
+                  <p>书已到期!</p>
+                  <form method="post">
+                     {{ form.hidden_tag() }}
+                     {{ form.back}}
+                   </form>
+              {% endif %}
 					 	</div>
 				</div>
 			</div>
