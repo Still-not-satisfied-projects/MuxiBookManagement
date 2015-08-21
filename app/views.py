@@ -59,8 +59,8 @@ def search():
             2. 类别搜索（返回类别的图书：后台、前端、设计、互联网、其他）
     """
     if request.methos == 'POST':
-        session['search'] == request.form['search']
-        return redirect(url_for("search_results", session['session']))
+        """前端 input 标签 action 实现重定向"""
+        pass
 
 
 @app.route('/search_results/')
@@ -161,12 +161,21 @@ def user(username):
     用户个人信息页
         显示该用户历史借阅
         显示该用户快要过期的书（3天为界）
+        现在回到用户页，眼前还剩最后一个bug -- 用户还书机制
+
+        还是那个问题 -- 如何将用户的借阅表单与书籍对应？！
+        有些凌乱了，form应该是没有办法了，只有试试input
+        或者换一个新的，尽可能简单的思路
+
+        先试试第三种
+        然后是第二种
+        然后就是哈哈哈 ajax and api -- 3a策略了！
+
+        So , 开始吧！今天下午把弄好!
     """
     book_list = Book.query.filter_by(user_id=current_user.id).order_by('end').all()
-    book_list_n = zip(range(len(book_list)), book_list)
     time_done_book = []
     time_dead_book = []
-    form_list = []
 
     for book in book_list:
         delta = (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
@@ -176,21 +185,19 @@ def user(username):
         if delta <= 0:
             time_dead_book.append(book)
 
-    for n, book in book_list_n:
-        # 我的想法是通过 n 将 book与form 连接起来!
-        form = BackForm()
-        form_list.insert(n, form)
+    if request.method == "POST":
+        """在前端input标签的重定向页面进行处理"""
+        return redirect(url_for('/user', username=current_user.username))
 
-    for n, book in book_list_n :
-        if form_list[n].validate_on_submit():
-            book.status = False
-            book.user_id = None
-            book.start = None
-            book.end = None
-            flash("%s 已经归还" % book.name)
-            return redirect(url_for('user', username=current_user.username))
+    books = Book.query.filter_by(name=request.args.get('back'), user_id=current_user.id).all()
+    for book in books:
+        book.status = False
+        book.start = None
+        book.end = None
+        book.user_id = None
+        flash('%s 已归还!' % book.name)
+        return redirect(url_for('user', username=current_user.username))
 
     return render_template('user.html', username=username,
                            time_done_book=time_done_book[:2],
-                           book_list_n=book_list_n,
-                           form_list=form_list)
+                           book_list=book_list)

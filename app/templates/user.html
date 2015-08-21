@@ -9,7 +9,7 @@
 {% block page_content %}
 <div class="left">
 		<span class="content">历史借阅</span>
-		{% for n, book in book_list_n %}
+		{% for book in book_list %}
 		 <div class="new_book">
 			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
 			<div class="book_information">
@@ -27,15 +27,13 @@
 				 		<div class="days">
               {% if book.end %}
                 <p>到期时间：{{ book.end }}</p>
-                  <form method="post">
-                     {{ form_list[n].hidden_tag() }}
-                     {{ form_list[n].back }}
+                  <form action="/user/{{ current_user.username}}">
+                    <input type="submit" name="back" value={{ book.name }}>
                   </form>
               {% else %}
                   <p>书已到期!</p>
-                  <form method="post">
-                     {{ form_list[n].hidden_tag() }}
-                     {{ form_list[n].back}}
+                  <form action="/user/{{ current_user.username}}">
+                    <input type="submit" name="back" value={{ book.name }}>
                    </form>
               {% endif %}
 					</div>
