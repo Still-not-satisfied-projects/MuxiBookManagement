@@ -17,13 +17,19 @@
 		top:50%;
 		left:50%;
 		transform:translate(-50%,-50%);
-		width:400px;
-		height:192px;
 		z-index: 2016;
 		border: 1px #dad33e solid;
 		background-color: #dad33e;
 		border-radius: 10px;
 		text-align: center;
+	}
+	.search_content{
+		width:400px;
+		height:192px;
+	}
+	.users{
+		width:500px;
+		height:320px;
 	}
 	.close{
 		position: fixed;
@@ -68,14 +74,77 @@
 	input[type="radio"]{
 		margin:0 10px;
 	}
-	.tags>li a{
+	.tags li a{
 		font-size: 14px;
 		font-weight: 600;
 		float: left;
 		color: black;
 		margin:0 15px;
 	}
-	.tags>li a:hover{
+	.tags li a:hover{
 		background-color: #e9e6e2;
 		border-radius: 3px;
 	}
+	.dengLu{
+	font-family: adobe heiti std;
+	font-size: 38px;
+
+}
+.logOn_input{
+	position: relative;
+	margin: 17px auto;
+}
+.logo{	
+	display: block;
+	position: absolute;
+	width: 40px;
+	height: 38px;
+	top: 9px;
+	left: 110px;
+	border-radius:5px; 
+}
+.name{
+	background: #fff url(../image/logo_input.png) no-repeat 0 0;
+}
+.code{
+	background: #fff url(../image/logo_input.png) no-repeat 0 -38px;
+}
+.logOn_input_text{
+	height: 55px;
+	width: 185px;
+	border: none;
+	border-radius: 5px;
+	padding: 0 55px;
+	font-size: 19px;
+}
+.logOn_text{
+	position: absolute;
+	right: 110px;
+	top: 9px;
+	font-size: 20px;
+	font-family: adobe heiti std;
+}
+.btn{
+	width: 77px;
+	height: 36px;
+	background-color: #332a1c;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size:18px;
+	font-family:adobe heiti std; 
+	cursor: pointer;
+}
+.go{
+	position: absolute;
+	left: 25%;
+
+}
+.close{
+	position: absolute;
+	right: 25%
+}
+.close a{
+	color: #fff;
+
+}
