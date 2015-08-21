@@ -68,14 +68,14 @@
 	input[type="radio"]{
 		margin:0 10px;	
 	}
-	.tags li a{
+	.tags>li a{
 		font-size: 14px;
 		font-weight: 600;
 		float: left;
 		color: black;
 		margin:0 15px;	
 	}
-	.tags li a:hover{
+	.tags>li a:hover{
 		background-color: #e9e6e2;
 		border-radius: 3px;
 	}
