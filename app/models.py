@@ -54,6 +54,7 @@ class Book(db.Model):
     image = db.Column(db.String(164))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     status = db.Column(db.Boolean)
+    start = db.Column(db.String(164))
     end = db.Column(db.String(164))
 
     def __repr__(self):

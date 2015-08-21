@@ -1,14 +1,31 @@
 {% extends "base.html" %}
 {% block title %}搜索结果{% endblock %}
+
+{% block css_file %}
+  <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/new_First.css" rel="stylesheet", type="text/css" />
+{% endblock %}
+
 {% block page_content %}
 <div class="result">
-    <head>{{ query }} 的搜索结果: </head>
+    <head>{{ search }} 的搜索结果: </head>
     <hr/>
     {% for book in get_book_list %}
       <img src={{ book.image }}>
       <h3>书名：{{ book.name }}</h3>
       <h3>类别: {{ book.tag }}</h3>
+      {% if book.status %}
+        <h3>已借</h3>
+      {% else %}
+        <h3>未借</h3>
+      {% endif %}
       <a href="/info/{{ book.name }}"><h3>详情</h3></a>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block script_file %}
+  <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="/static/js/shouye.js"></script>
 {% endblock %}

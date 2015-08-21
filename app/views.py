@@ -19,8 +19,8 @@
 
 from . import app, db
 from app.models import User, Book
-from app.forms import SearchForm, BookForm, LoginForm, GetForm, BackForm
-from flask import render_template, redirect, url_for, session, flash
+from app.forms import BookForm, LoginForm, GetForm, BackForm
+from flask import render_template, redirect, url_for, session, flash, request
 from flask.ext.login import login_user, logout_user, login_required, \
     current_user
 from urllib2 import urlopen
@@ -40,7 +40,7 @@ def home():
         new_book_list: 最近录入新书列表(默认为6本, 依据时间[id]排序)
     """
     new_book_list = Book.query.order_by('-id').all()[:6]
-    get_book_list = Book.query.filter_by(status=True).order_by('-id').all()[:2]
+    get_book_list = Book.query.filter_by(status=True).order_by('start desc').all()[:2]
 
     return render_template('home.html', new_book_list=new_book_list,
                            get_book_list=get_book_list)
@@ -58,36 +58,33 @@ def search():
             1. 书名搜索（书名必须正确）
             2. 类别搜索（返回类别的图书：后台、前端、设计、互联网、其他）
     """
-    form = SearchForm()
-    if form.validate_on_submit():
-        session['form_status1'] =  form.status1.data
-        session['form_status2'] =  form.status2.data
-        query = form.search.data
-        return redirect(url_for('search_results', query=query))
-    return render_template('search.html', form=form)
+    if request.methos == 'POST':
+        session['search'] == request.form['search']
+        return redirect(url_for("search_results", session['session']))
 
 
-@app.route('/search_results/<query>')
-def search_results(query):
+@app.route('/search_results/')
+def search_results():
     """
     搜索结果页
 
         提供书籍借阅表单
     """
     get_book_list = []
-    results = Book.query.whoosh_search(query, app.config['MAX_SEARCH_RESULTS'])
+    search = request.args.get('search')
+    results = Book.query.whoosh_search(search, app.config['MAX_SEARCH_RESULTS'])
 
     for book in results[:]:
-        if session['form_status1'] == True:
+        if request.args.get('range') == 'can':
             if book.status != True:
             # 跳过不可借阅图书
                 get_book_list.append(book)
-        if session['form_status2'] == True:
+        if request.args.get('range') == 'all':
             get_book_list.append(book)
 
     return render_template('search_results.html',
                            get_book_list=get_book_list,
-                           query=query)
+                           search=search)
 
 
 @app.route('/info/<name>', methods=["POST", "GET"])
@@ -96,6 +93,7 @@ def info(name):
     book = Book.query.filter_by(name=name).first()
     if form.validate_on_submit():
         start = datetime.datetime.now()
+        book.start = start
         book.user_id = current_user.id
         book.status = True  # 已被借
         day = form.day.data
@@ -164,31 +162,35 @@ def user(username):
         显示该用户历史借阅
         显示该用户快要过期的书（3天为界）
     """
-    user_get_book = Book.query.filter_by(user_id=current_user.id).order_by('end')
+    book_list = Book.query.filter_by(user_id=current_user.id).order_by('end').all()
+    book_list_n = zip(range(len(book_list)), book_list)
     time_done_book = []
+    time_dead_book = []
     form_list = []
 
-    for n, book in enumerate(user_get_book):
+    for book in book_list:
         delta = (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
             datetime.datetime.now()).total_seconds()
         if delta <= 3*24*60*60 and delta > 0:
             time_done_book.append(book)
         if delta <= 0:
-            flash("%s 已经到期啦!" % book.name)
-            book.end = None
+            time_dead_book.append(book)
 
-    for book in user_get_book:
+    for n, book in book_list_n:
+        # 我的想法是通过 n 将 book与form 连接起来!
         form = BackForm()
-        form_list.append(form)
+        form_list.insert(n, form)
 
-    book_form = zip(user_get_book, form_list)
-
-    for book, form in book_form:
-        if form.validate_on_submit():
+    for n, book in book_list_n :
+        if form_list[n].validate_on_submit():
             book.status = False
             book.user_id = None
+            book.start = None
             book.end = None
+            flash("%s 已经归还" % book.name)
             return redirect(url_for('user', username=current_user.username))
 
-    return render_template('user.html', username=username, book_form=book_form,
-                           time_done_book=time_done_book[:2])
+    return render_template('user.html', username=username,
+                           time_done_book=time_done_book[:2],
+                           book_list_n=book_list_n,
+                           form_list=form_list)
