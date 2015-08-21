@@ -4,11 +4,12 @@
 {% block css_file %}
   <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
   <link href="/static/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="/static/css/new_First.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block page_content %}
 <div class="left">
 		<span class="content">历史借阅</span>
-		{% for book, form in book_form %}
+		{% for book in book_list %}
 		 <div class="new_book">
 			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
 			<div class="book_information">
@@ -25,19 +26,17 @@
 					</a>
 				 		<div class="days">
               {% if book.end %}
-							    <p>到期时间：{{ book.end }}</p>
-                  <form method="post">
-                     {{ form.hidden_tag() }}
-                     {{ form.back}}
-                   </form>
+                <p>到期时间：{{ book.end }}</p>
+                  <form action="/user/{{ current_user.username}}">
+                    <input type="submit" name="back" value={{ book.name }}>
+                  </form>
               {% else %}
                   <p>书已到期!</p>
-                  <form method="post">
-                     {{ form.hidden_tag() }}
-                     {{ form.back}}
+                  <form action="/user/{{ current_user.username}}">
+                    <input type="submit" name="back" value={{ book.name }}>
                    </form>
               {% endif %}
-					 	</div>
+					</div>
 				</div>
 			</div>
 		</div>

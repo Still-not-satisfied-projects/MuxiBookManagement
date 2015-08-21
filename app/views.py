@@ -19,8 +19,8 @@
 
 from . import app, db
 from app.models import User, Book
-from app.forms import SearchForm, BookForm, LoginForm, GetForm, BackForm
-from flask import render_template, redirect, url_for, session, flash
+from app.forms import BookForm, LoginForm, GetForm, BackForm
+from flask import render_template, redirect, url_for, session, flash, request
 from flask.ext.login import login_user, logout_user, login_required, \
     current_user
 from urllib2 import urlopen
@@ -40,7 +40,7 @@ def home():
         new_book_list: 最近录入新书列表(默认为6本, 依据时间[id]排序)
     """
     new_book_list = Book.query.order_by('-id').all()[:6]
-    get_book_list = Book.query.filter_by(status=True).order_by('-id').all()[:2]
+    get_book_list = Book.query.filter_by(status=True).order_by('start desc').all()[:2]
 
     return render_template('home.html', new_book_list=new_book_list,
                            get_book_list=get_book_list)
@@ -58,36 +58,33 @@ def search():
             1. 书名搜索（书名必须正确）
             2. 类别搜索（返回类别的图书：后台、前端、设计、互联网、其他）
     """
-    form = SearchForm()
-    if form.validate_on_submit():
-        session['form_status1'] =  form.status1.data
-        session['form_status2'] =  form.status2.data
-        query = form.search.data
-        return redirect(url_for('search_results', query=query))
-    return render_template('search.html', form=form)
+    if request.methos == 'POST':
+        """前端 input 标签 action 实现重定向"""
+        pass
 
 
-@app.route('/search_results/<query>')
-def search_results(query):
+@app.route('/search_results/')
+def search_results():
     """
     搜索结果页
 
         提供书籍借阅表单
     """
     get_book_list = []
-    results = Book.query.whoosh_search(query, app.config['MAX_SEARCH_RESULTS'])
+    search = request.args.get('search')
+    results = Book.query.whoosh_search(search, app.config['MAX_SEARCH_RESULTS'])
 
     for book in results[:]:
-        if session['form_status1'] == True:
+        if request.args.get('range') == 'can':
             if book.status != True:
             # 跳过不可借阅图书
                 get_book_list.append(book)
-        if session['form_status2'] == True:
+        if request.args.get('range') == 'all':
             get_book_list.append(book)
 
     return render_template('search_results.html',
                            get_book_list=get_book_list,
-                           query=query)
+                           search=search)
 
 
 @app.route('/info/<name>', methods=["POST", "GET"])
@@ -96,6 +93,7 @@ def info(name):
     book = Book.query.filter_by(name=name).first()
     if form.validate_on_submit():
         start = datetime.datetime.now()
+        book.start = start
         book.user_id = current_user.id
         book.status = True  # 已被借
         day = form.day.data
@@ -163,32 +161,43 @@ def user(username):
     用户个人信息页
         显示该用户历史借阅
         显示该用户快要过期的书（3天为界）
-    """
-    user_get_book = Book.query.filter_by(user_id=current_user.id).order_by('end')
-    time_done_book = []
-    form_list = []
+        现在回到用户页，眼前还剩最后一个bug -- 用户还书机制
 
-    for n, book in enumerate(user_get_book):
+        还是那个问题 -- 如何将用户的借阅表单与书籍对应？！
+        有些凌乱了，form应该是没有办法了，只有试试input
+        或者换一个新的，尽可能简单的思路
+
+        先试试第三种
+        然后是第二种
+        然后就是哈哈哈 ajax and api -- 3a策略了！
+
+        So , 开始吧！今天下午把弄好!
+    """
+    book_list = Book.query.filter_by(user_id=current_user.id).order_by('end').all()
+    time_done_book = []
+    time_dead_book = []
+
+    for book in book_list:
         delta = (datetime.datetime.strptime(book.end, "%Y-%m-%d %H:%M:%S") - \
             datetime.datetime.now()).total_seconds()
         if delta <= 3*24*60*60 and delta > 0:
             time_done_book.append(book)
         if delta <= 0:
-            flash("%s 已经到期啦!" % book.name)
-            book.end = None
+            time_dead_book.append(book)
 
-    for book in user_get_book:
-        form = BackForm()
-        form_list.append(form)
+    if request.method == "POST":
+        """在前端input标签的重定向页面进行处理"""
+        return redirect(url_for('/user', username=current_user.username))
 
-    book_form = zip(user_get_book, form_list)
+    books = Book.query.filter_by(name=request.args.get('back'), user_id=current_user.id).all()
+    for book in books:
+        book.status = False
+        book.start = None
+        book.end = None
+        book.user_id = None
+        flash('%s 已归还!' % book.name)
+        return redirect(url_for('user', username=current_user.username))
 
-    for book, form in book_form:
-        if form.validate_on_submit():
-            book.status = False
-            book.user_id = None
-            book.end = None
-            return redirect(url_for('user', username=current_user.username))
-
-    return render_template('user.html', username=username, book_form=book_form,
-                           time_done_book=time_done_book[:2])
+    return render_template('user.html', username=username,
+                           time_done_book=time_done_book[:2],
+                           book_list=book_list)
