@@ -27,7 +27,7 @@
 					<li class="nav home"><a href="/">HOME</a></li>
 					<li class="nav search"><a href="javascript:void(0)" onclick="showBorder()">SEARCH</a></li>
 					<!--弹出框-->
-						<div id="content" class="light_content">
+						<div id="content" class="light_content search_content">
 							<div class="close"><a href="javascript:void(0)" onclick="hideBorder()">关闭</a>
 						</div>
 						<form action="/search_results/" >
@@ -46,15 +46,36 @@
 								<li><a href="/search_results/?search=互联网&range=all">互联网</a></li>
 								<li><a href="/search_results/?search=其他&range=all">其他</a></li>
 							</ul>
-	 				</form>
-				</div>
-				<div id="fade" class="black_overlay"></div>
+	 					</form>
+						</div>
+						<div id="fade" class="black_overlay"></div>
 
 				{% if current_user.is_authenticated() %}
 					<li class="nav user"><a href="/user/{{ current_user.username }}">Hi!{{ current_user.username }}</a></li>
 					<li class="nav log"><a href="/logout">LOG OUT</a></li>
 				{% else %}
-					<li class="nav log"><a href="/login">LOG ON</a></li>
+					<li class="nav log"><a href="javascript:void(0)" onclick="showBorder()" >LOG ON</a></li>
+						<div id="content" class="light_content users">
+							<div class="dengLu">登录</div>
+							<form id="users_logOn">
+								<p class="logOn_input">	
+									<label class="logo name" for="name"></label>
+									<input type="text" class="logOn_input_text"id="name">
+									<span class="logOn_text">姓名</span>
+								</p>
+								<p class="logOn_input">	
+									<label class="logo code" for="code"></label>
+									<input type="text" class="logOn_input_text"id="code">
+									<span class="logOn_text">密码</span>
+								</p>
+									<input type="submit" class="btn go" value="登录">
+	 						</form>
+
+	 						<div class="btn close"><a href="javascript:void(0)" onclick="hideBorder()">取消</a>
+							</div>
+
+						</div>
+						<div id="fade" class="black_overlay"></div>
 				{% endif %}
 			</ul>
 		</nav>
