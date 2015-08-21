@@ -22,37 +22,37 @@ a:hover{
 	display: table-cell;
 	vertical-align: middle;
 	height: 100px;
-	
+
 }
-.header nav{
+.header .menu{
 	background-color: #332a1c;
 	margin-left: 225px;
 	height: 80px;
 }
 .menu{
-	padding-left:300px; 
+	padding-left:300px;
 
 }
-nav li{
+.menu .nav{
 	display: inline-block;
 	list-style:none;
 	text-align: center;
 	margin-top: 3px;
 	width: 125px;
 }
-nav li a{
+.menu .nav a{
 	display: block;
 	color: white;
 	font-size: 15px;
 	line-height: 77px;
 	text-decoration: none;
 }
-li:hover{
+.menu .nav a:hover{
 	border-top: #eee 5px solid;
 	margin-top: -5px;
 	background-color: #44351d;
 }
-li:visited{
+.menu li:visited{
 	color: #fff843;
 
 }
@@ -123,15 +123,16 @@ li:visited{
 .right{
 	width: 190px;
 	float: left;
-	margin:50px 0 5px 98px; 
+	margin:50px 0 5px 98px;
 }
 .zhanwei{
 	margin-top:710px;
 	height: 1px;
 }
 .days{
-	border-top:#6e6961 2px solid; 
+	border-top:#6e6961 2px solid;
 	margin-top: 10px;
+	font-size: 12px
 }
 .days p{
 	color: white;

@@ -36,7 +36,7 @@
 		height: 20px;
 		display: inline-block;
 		color: white;
-		font-weight: 600: 
+		font-weight: 600:
 	}
 	.close a:hover{
 		width: 45px;
@@ -44,7 +44,7 @@
 		background-color: #332a1c;
 		border-radius: 5px;
 	}
-	.search{
+	.search_ipt{
 		position: relative;
 		height: 66px;
 		margin-top: 40px;
@@ -63,17 +63,17 @@
 		outline: none;
 	}
 	.choose{
-		margin:15px; 
+		margin:15px;
 	}
 	input[type="radio"]{
-		margin:0 10px;	
+		margin:0 10px;
 	}
 	.tags>li a{
 		font-size: 14px;
 		font-weight: 600;
 		float: left;
 		color: black;
-		margin:0 15px;	
+		margin:0 15px;
 	}
 	.tags>li a:hover{
 		background-color: #e9e6e2;
