@@ -54,10 +54,11 @@
 					<li class="nav user"><a href="/user/{{ current_user.username }}">Hi!{{ current_user.username }}</a></li>
 					<li class="nav log"><a href="/logout">LOG OUT</a></li>
 				{% else %}
-					<li class="nav log"><a href="/login">LOG ON</a></li>
+					<li class="nav log"><a href="javascript:;" onclick="showBorderLog()">LOG ON</a></li>
 						<div id="content_log" class="light_content users">
-							<div class="dengLu">登录</div>
-							<form action="/user">
+				{% block form_content %}{% endblock %}
+							<!--div class="dengLu">登录</div>
+							<form method="post">
 								<p class="logOn_input">
 									<label class="logo name" for="name"></label>
 									<input type="text" class="logOn_input_text" name="username">
@@ -72,7 +73,7 @@
 	 						</form>
 
 	 						<div class="btn cancel"><a href="javascript:void(0)" onclick="hideBorderLog()">取消</a>
-							</div>
+							</div-->
 
 						</div>
 						<div id="fade_log" class="black_overlay"></div>

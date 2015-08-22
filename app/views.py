@@ -38,11 +38,19 @@ def home():
 
         new_book_list: 最近录入新书列表(默认为6本, 依据时间[id]排序)
     """
+    form = LoginForm()
     new_book_list = Book.query.order_by('-id').all()[:6]
     get_book_list = Book.query.filter_by(status=True).order_by('start desc').all()[:2]
 
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is not None:
+            login_user(user)
+            return redirect(url_for('user', username=current_user.username))
+        flash('该用户不存在')
+
     return render_template('home.html', new_book_list=new_book_list,
-                           get_book_list=get_book_list)
+                           get_book_list=get_book_list, form=form)
 
 
 @app.route('/search', methods=["POST", "GET"])

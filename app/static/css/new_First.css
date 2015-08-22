@@ -112,7 +112,7 @@
 .code{
 	background: #fff url(../image/logo_input.png) no-repeat 0 -38px;
 }
-.logOn_input_text{
+.logOn_input_text input{
 	height: 55px;
 	width: 185px;
 	border: none;

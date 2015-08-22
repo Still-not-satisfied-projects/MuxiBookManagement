@@ -9,6 +9,33 @@
   <link href="/static/css/new_First.css" rel="stylesheet", type="text/css" />
 {% endblock %}
 
+{% block form_content %}
+<div class="dengLu">登录</div>
+  <form method="post">
+	   <div class="logOn_input">
+				<label class="logo name" for="name"></label>
+				<div class="logOn_input_text">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+       </div>
+				<span class="logOn_text">姓名</span>
+			</div>
+			<div class="logOn_input">
+				<label class="logo code" for="code"></label>
+				<!--input type="password" class="logOn_input_text"-->
+        <div class="logOn_input_text">
+          {{ form.password }}
+        </div>
+				<span class="logOn_text">密码</span>
+			</div>
+				<input type="submit" class="btn go" value="登录">
+
+	 </form>
+
+	 <div class="btn cancel"><a href="javascript:void(0)" onclick="hideBorderLog()">取消</a>
+</div>
+{% endblock %}
+
 {% block page_content %}
 <div class="left">
 		<p class="content">新增图书</p>
