@@ -15,3 +15,12 @@ function hideBorder(){
 	document.getElementById('content').style.display = 'none' ;
 	document.getElementById('fade').style.display = 'none' ;
 }
+
+    function showBorderLog(){
+	document.getElementById('content_log').style.display = 'block' ;
+	document.getElementById('fade_log').style.display = 'block' ;
+}
+function hideBorderLog(){
+	document.getElementById('content_log').style.display = 'none' ;
+	document.getElementById('fade_log').style.display = 'none' ;
+}

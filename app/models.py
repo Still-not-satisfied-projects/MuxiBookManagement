@@ -71,7 +71,8 @@ class User(db.Model, UserMixin):
 
     @login_manager.user_loader
     def load_user(user_id):
-        """flask-login要求实现的用户加载回调函数"""
+        """flask-login要求实现的用户加载回调函数
+           依据用户的unicode字符串的id加载用户"""
         return User.query.get(int(user_id))
 
     def __repr__(self):

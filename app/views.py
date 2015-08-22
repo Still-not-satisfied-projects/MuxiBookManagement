@@ -19,7 +19,7 @@
 
 from . import app, db
 from app.models import User, Book
-from app.forms import BookForm, LoginForm, GetForm, BackForm
+from app.forms import BookForm, GetForm, BackForm, LoginForm
 from flask import render_template, redirect, url_for, session, flash, request
 from flask.ext.login import login_user, logout_user, login_required, \
     current_user
@@ -28,8 +28,7 @@ import json
 import datetime
 
 
-@app.route('/')
-@app.route('/home')
+@app.route('/', methods=["POST", "GET"])
 def home():
     """
     首页视图函数

@@ -66,7 +66,10 @@
 		position: absolute;
 		top: 30%;
 		right: 12%;
-		outline: none;
+		background: url(../image/search.png) no-repeat 100%;
+		width: 30px;
+		height:35px;
+		border: none;
 	}
 	.choose{
 		margin:15px;
@@ -88,20 +91,20 @@
 	.dengLu{
 	font-family: adobe heiti std;
 	font-size: 38px;
-
+	margin-top: 35px;
 }
 .logOn_input{
 	position: relative;
 	margin: 17px auto;
 }
-.logo{	
+.logo{
 	display: block;
 	position: absolute;
 	width: 40px;
 	height: 38px;
 	top: 9px;
 	left: 110px;
-	border-radius:5px; 
+	border-radius:5px;
 }
 .name{
 	background: #fff url(../image/logo_input.png) no-repeat 0 0;
@@ -120,7 +123,7 @@
 .logOn_text{
 	position: absolute;
 	right: 110px;
-	top: 9px;
+	top: 35%;
 	font-size: 20px;
 	font-family: adobe heiti std;
 }
@@ -132,7 +135,7 @@
 	border-radius: 5px;
 	color: #fff;
 	font-size:18px;
-	font-family:adobe heiti std; 
+	font-family:adobe heiti std;
 	cursor: pointer;
 }
 .go{
@@ -140,11 +143,12 @@
 	left: 25%;
 
 }
-.close{
+.cancel{
 	position: absolute;
 	right: 25%
 }
-.close a{
+.cancel a{
 	color: #fff;
-
+	display: inline-block;
+	line-height: 38px;
 }
