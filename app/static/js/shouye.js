@@ -1,4 +1,6 @@
-    $(document).ready(function(){
+
+
+   $(document).ready(function(){
     $('.book_information').mouseleave(function(){
         $(this).find('.book_information_1').slideUp('fast');
     })
