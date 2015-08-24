@@ -1,14 +1,21 @@
-#bgimage{
-	background-image: url(../image/bgimage.png);
+.bgimage{
+	position: absolute;
 	height: 100px;
-
+	width: 100%;
+	margin-top: -750px;
+	z-index: -999;
 }
-#container{
-	margin: 0 auto;
+.bgimage img{
+	width: 100%;
+}
+.container{
+	margin: 70px auto;
 	width: 1100px;
 	font-family: 微软雅黑;
 	background-color: #eee;
 	border: transparent solid;
+	overflow: hidden;
+	margin: -10px auto 0 ;
 }
 a{
 	text-decoration: none;
@@ -16,21 +23,29 @@ a{
 a:hover{
 	color: #fff843;
 }
+.nav_image{
+	height: 100px;
+	width: 240px;
+	position: absolute;
+	z-index: 1002;
+}
 .header{
 	width: 1100px;
-	background: #eee url(../image/logo.png) no-repeat;
-	display: table-cell;
-	vertical-align: middle;
+	position: relative;
+	margin: 80px auto 0;
 	height: 100px;
 
 }
 .header .menu{
 	background-color: #332a1c;
-	margin-left: 225px;
-	height: 80px;
+	height: 75px;
+	right: 0;
+	top: 14%;
+	left: 7%;
+	position: absolute;
 }
 .menu{
-	padding-left:300px;
+	padding-left:455px;
 
 }
 .menu .nav{
@@ -39,12 +54,13 @@ a:hover{
 	text-align: center;
 	margin-top: 3px;
 	width: 125px;
+	z-index: 1001;
 }
 .menu .nav a{
 	display: block;
 	color: white;
 	font-size: 15px;
-	line-height: 77px;
+	line-height: 70px;
 	text-decoration: none;
 }
 .menu .nav a:hover{
@@ -59,7 +75,7 @@ a:hover{
 .left{
 	float: left;
 	width:640px;
-	margin: 50px 0 0 50px;
+	margin: 60px 0 0 50px;
 }
  .content{
 	display:block;
@@ -75,18 +91,25 @@ a:hover{
 	margin-right: 43px;
 	width: 170px;
 	height: 235px;
+	position: relative;
+	overflow: hidden;
 }
 .book{
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 }
 .book_information{
 	background-color: #332a1c;
 	opacity: 0.9;
-	height: 55px;
-	margin-top: -55px;
 	text-align: center;
+	position: absolute;
+	top: 78%;
+	width: 100%;
+	height: 100%;
+	transition:all 0.5s;
+}
+.book_information:hover{
+	top: 0;
 }
 .title{
 	font-size: 15px;
@@ -97,7 +120,7 @@ a:hover{
 	width: 167px;
 	white-space:nowrap;
 }
-.title_hid{
+.title:hover{
 	font-size: 15px;
 	color: #fff843;
 	padding: 11px 0 4px;
@@ -112,29 +135,39 @@ a:hover{
 	color: #6e6961;
 	width: 167px;
 }
-.book_information_1{
-	background-color: #332a1c;
-	height:225px;
-	margin-top: -225px;
-	display: none;
-	z-index: 99999;
-	position: relative;
+.book_back{
+	color: #eee;
+	font-size: 15px;
+	margin-bottom: 5px; 
 }
 .right{
 	width: 190px;
 	float: left;
-	margin:50px 0 5px 98px;
+	margin:60px 0 5px 98px;
 }
 .zhanwei{
-	margin-top:710px;
 	height: 1px;
 }
-.days{
+.book_tags{
 	border-top:#6e6961 2px solid;
 	margin-top: 10px;
 	font-size: 12px
 }
-.days p{
+.book_tags p{
 	color: white;
 	margin-top:40px;
+}
+.bar{
+	width: 100%;
+	height: 5px;
+	border: #332a1c 1px solid;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;    
+}
+#bar_progress{
+	    height: 100%;
+        background-color: #fff843;
+        border-radius: 5px;
+        width: 0;
 }

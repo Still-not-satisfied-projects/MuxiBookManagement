@@ -1,6 +1,6 @@
 	.black_overlay{
 		display: none;
-		position: absolute;
+		position: fixed;
 		top:0%;
 		left:0%;
 		width:100%;
@@ -137,6 +137,10 @@
 	font-size:18px;
 	font-family:adobe heiti std;
 	cursor: pointer;
+}
+.btn a{
+	width: 77px;
+	height: 35px;
 }
 .go{
 	position: absolute;

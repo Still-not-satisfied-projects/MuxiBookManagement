@@ -37,63 +37,55 @@
 {% endblock %}
 
 {% block page_content %}
-<div class="left">
-		<p class="content">新增图书</p>
-	{% for book in new_book_list %}
-		<div class="new_book">
-			<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
-			<!--显示层-->
-			<div class="book_information">
-				<a href="#">
-					<p class="title">{{ book.name }}</p>
-				 	<p class="author">{{ book.author }}</p>
-				 </a>
-			<!--隐藏层-->
-				<div class="book_information_1">
-					<a href="/info/{{ book.name }}">
-					<p class="title_hid">{{ book.name}}</p>
-				 	<p class="author">{{ book.author }}</p>
-				 </a>
-				 <div class="days">
-				 	<p>
-				    类别：{{ book.tag }}<br/>
-						<br/>
-						{{ book.summary[:100] }}...
-					</p>
-				 </div>
-				</div>
-			</div>
+
+<div class="container">
+		<div class="left">
+				<p class="content">新增图书</p>
+			{% for book in new_book_list %}
+				<div class="new_book">
+					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+						<div class="book_information">
+							<a href="/info/{{ book.name }}">
+							<p class="title">{{ book.name}}</p>
+						 	<p class="author">{{ book.author }}</p>
+						 </a>
+						 <div class="book_tags">
+						 	<p>
+						    类别：{{ book.tag }}<br/>
+								<br/>
+								{{ book.summary[:100] }}...
+							</p>
+						 </div>
+						</div>
+					</div>
+			{% endfor %}
 		</div>
-	{% endfor %}
+
+		<div class="right">
+				<span class="content">最近借阅</span>
+				{% for book in get_book_list %}
+				 <div class="new_book">
+					<a href="#"><img src={{ book.image }} alt="" class="book"></a>
+						<div class="book_information ">
+							<a href="#">
+								<p class="title">{{ book.name }}</p>
+
+								<p class="author">朱承浩</p>
+							</a>
+						 		<div class="book_tags">
+						 			<p>借阅者：{{ book.user.username}}</p>
+									<p>到期时间：{{ book.end }}</p>
+							 	</div>
+						</div>
+					
+				</div>
+		
+			{% endfor %}
+			<!--占位-->
+		</div>
 </div>
 
-<div class="right">
-		<span class="content">最近借阅</span>
-		{% for book in get_book_list %}
-		 <div class="new_book">
-			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
-			<div class="book_information">
-				<a href="#">
-					<p class="title">{{ book.name }}</p>
-				</a>
-				 	<p class="author">{{ book.author }}</p>
-
-				<div class="book_information_1 ">
-					<a href="#">
-						<p class="title">{{ book.name }}</p>
-
-						<p class="author">朱承浩</p>
-					</a>
-				 		<div class="days">
-				 			<p>借阅者：{{ book.user.username}}</p>
-							<p>到期时间：{{ book.end }}</p>
-					 	</div>
-				</div>
-			</div>
-		</div>
-	{% endfor %}
-	<!--占位-->
-</div>
 {% endblock %}
 
 {% block script_file %}

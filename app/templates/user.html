@@ -7,7 +7,8 @@
   <link href="/static/css/new_First.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block page_content %}
-<div class="left">
+<div class="container">
+	<div class="left">
 		<span class="content">历史借阅</span>
 		{% for book in book_list %}
 		 <div class="new_book">
@@ -16,33 +17,28 @@
 				<a href="#">
 					<p class="title">{{ book.name }}</p>
 				</a>
-				 	<p class="author">{{ book.author }}</p>
+				 	<p class="book_back">还书</p>
 
-				<div class="book_information_1 ">
-					<a href="#">
-						<p class="title">{{ book.name }}</p>
-
-						<p class="author">{{ book.author }}</p>
-					</a>
-				 		<div class="days">
+				 		<div class="book_tags">
               {% if book.end %}
                 <p>到期时间：{{ book.end }}</p>
                   <form action="/user/{{ current_user.username}}">
+                  	<p class="book_back">还书</p>
                     <input type="submit" name="back" value={{ book.name }}>
                   </form>
               {% else %}
                   <p>书已到期!</p>
                   <form action="/user/{{ current_user.username}}">
+                  	<p class="book_back">还书</p>
                     <input type="submit" name="back" value={{ book.name }}>
                    </form>
               {% endif %}
 					</div>
 				</div>
 			</div>
-		</div>
+		
 	{% endfor %}
-	<!--占位-->
-</div>
+</div>	<!--占位-->
 <div class="right">
 		<span class="content">快要过期</span>
 		{% for book in time_done_book %}
@@ -52,17 +48,14 @@
 				<a href="#">
 					<p class="title">{{ book.name }}</p>
 				</a>
-				 	<p class="author">{{ book.author }}</p>
-
-				<div class="book_information_1 ">
-					<a href="#">
-						<p class="title">{{ book.name }}</p>
-
-						<p class="author">{{ book.author }}</p>
-					</a>
-				 		<div class="days">
-				 			<p>借阅者：{{ book.user.username}}</p>
+				 	<p class="book_back">还书</p>
+		
+				 		<div class="book_tags">
 							<p>到期时间：{{ book.end }}</p>
+							 <form action="/user/{{ current_user.username}}">
+                  	<p class="book_back">还书</p>
+                    <input type="submit" name="back" value={{ book.name }}>
+                   </form>
 					 	</div>
 				</div>
 			</div>

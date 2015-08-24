@@ -18,12 +18,15 @@
   {% block style %}
   <!-- css style in html file -->
   {% endblock %}
-	<!--此处占位-->
-  <div id="container">
-  	<div id="bgimage"></div>
+  <div class="bgimage">
+  	<img src="/static/image/bgimage.png">
+  </div>
 			<div class="header">
-				<nav>
-		   	<ul class="menu">
+
+				<div class="nav_image">
+					<img src="/static/image/logo.png">
+				</div>
+		   		<ul class="menu">
 					<li class="nav home"><a href="/">HOME</a></li>
 					<li class="nav search"><a href="javascript:void(0)" onclick="showBorder()">SEARCH</a></li>
 					<!--弹出框-->
@@ -48,7 +51,7 @@
 							</ul>
 	 					</form>
 						</div>
-						<div id="fade" class="black_overlay"></div>
+						
 
 				{% if current_user.is_authenticated() %}
 					<li class="nav user"><a href="/user/{{ current_user.username }}">Hi!{{ current_user.username }}</a></li>
@@ -76,14 +79,17 @@
 							</div-->
 
 						</div>
-						<div id="fade_log" class="black_overlay"></div>
+						
 				{% endif %}
+
 			</ul>
-		</nav>
-	</div>
+			
+	</div>	
+	<div id="fade" class="black_overlay"></div>
+				<div id="fade_log" class="black_overlay"></div>
   {% block page_content %}{% endblock %}
   <div class="zhanwei">木犀工作室出品</div>
-  </div>
+  
 {% block script_file %}{% endblock %}
 </body>
 </html>
