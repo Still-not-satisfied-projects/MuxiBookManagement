@@ -194,7 +194,7 @@ def user(username):
 
     if request.method == "POST":
         """在前端input标签的重定向页面进行处理"""
-        return redirect(url_for('/user', username=current_user.username))
+        return redirect(url_for('user', username=current_user.username))
 
     books = Book.query.filter_by(name=request.args.get('back'), user_id=current_user.id).all()
     for book in books:
