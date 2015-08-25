@@ -159,13 +159,11 @@ a:hover{
 }
 .bar{
 	width: 100%;
-	height: 5px;
-	border: #332a1c 1px solid;
-    border-radius: 5px;
+	height: 8px;
     position: absolute;
     top: 0;    
 }
-#bar_progress{
+.progress{
 	    height: 100%;
         background-color: #fff843;
         border-radius: 5px;
