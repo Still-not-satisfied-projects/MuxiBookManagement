@@ -1,6 +1,6 @@
-	.black_overlay{
+.black_overlay{
 		display: none;
-		position: absolute;
+		position: fixed;
 		top:0%;
 		left:0%;
 		width:100%;
@@ -11,7 +11,7 @@
 		opacity:0.5;
 		filter:alpha(opacity=50);
 	}
-	.light_content{
+.light_content{
 		display:none;
 		position:fixed;
 		top:50%;
@@ -23,85 +23,86 @@
 		border-radius: 10px;
 		text-align: center;
 	}
-	.search_content{
+.search_content{
 		width:400px;
 		height:192px;
 	}
-	.users{
+.users{
 		width:500px;
 		height:320px;
 	}
-	.close{
+.close{
 		position: fixed;
 		top: 0;
 		right: 0;
 		border-radius: 5px;
 	}
-	.close a{
+.close a{
 		width: 45px;
 		height: 20px;
 		display: inline-block;
 		color: white;
 		font-weight: 600:
 	}
-	.close a:hover{
+.close a:hover{
 		width: 45px;
 		height: 20px;
 		background-color: #332a1c;
 		border-radius: 5px;
 	}
-	.search_ipt{
+.search_ipt{
 		position: relative;
 		height: 66px;
 		margin-top: 40px;
 	}
-	.ipt{
+.ipt{
 		width: 284px;
 		padding:25px;
 		border: #fff843;
 		border-radius: 5px;
 		font-size: 14px;
 	}
-	.search_logo{
+.search_logo{
 		position: absolute;
 		top: 30%;
 		right: 12%;
-		outline: none;
+		background: url(../image/search.png) no-repeat 100%;
+		width: 30px;
+		height:35px;
+		border: none;
 	}
-	.choose{
+.choose{
 		margin:15px;
 	}
-	input[type="radio"]{
-		margin:0 10px;
-	}
-	.tags li a{
+
+.tags li a{
 		font-size: 14px;
 		font-weight: 600;
 		float: left;
 		color: black;
 		margin:0 15px;
 	}
-	.tags li a:hover{
+.tags li a:hover{
 		background-color: #e9e6e2;
 		border-radius: 3px;
 	}
 	.dengLu{
 	font-family: adobe heiti std;
 	font-size: 38px;
-
+	margin-top: 35px;
 }
 .logOn_input{
 	position: relative;
 	margin: 17px auto;
 }
-.logo{	
+.logo{
 	display: block;
 	position: absolute;
 	width: 40px;
 	height: 38px;
 	top: 9px;
 	left: 110px;
-	border-radius:5px; 
+	border-radius:5px;
 }
 .name{
 	background: #fff url(../image/logo_input.png) no-repeat 0 0;
@@ -109,7 +110,7 @@
 .code{
 	background: #fff url(../image/logo_input.png) no-repeat 0 -38px;
 }
-.logOn_input_text{
+.logOn_input_text input{
 	height: 55px;
 	width: 185px;
 	border: none;
@@ -120,7 +121,7 @@
 .logOn_text{
 	position: absolute;
 	right: 110px;
-	top: 9px;
+	top: 35%;
 	font-size: 20px;
 	font-family: adobe heiti std;
 }
@@ -132,19 +133,24 @@
 	border-radius: 5px;
 	color: #fff;
 	font-size:18px;
-	font-family:adobe heiti std; 
+	font-family:adobe heiti std;
 	cursor: pointer;
+}
+.btn a{
+	width: 77px;
+	height: 35px;
 }
 .go{
 	position: absolute;
 	left: 25%;
 
 }
-.close{
+.cancel{
 	position: absolute;
 	right: 25%
 }
-.close a{
+.cancel a{
 	color: #fff;
-
+	display: inline-block;
+	line-height: 38px;
 }

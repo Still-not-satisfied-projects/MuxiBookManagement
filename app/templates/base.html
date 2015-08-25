@@ -18,12 +18,15 @@
   {% block style %}
   <!-- css style in html file -->
   {% endblock %}
-	<!--此处占位-->
-  <div id="container">
-  	<div id="bgimage"></div>
+  <div class="bgimage">
+  	<img src="/static/image/bgimage.png">
+  </div>
 			<div class="header">
-				<nav>
-		   	<ul class="menu">
+
+				<div class="nav_image">
+					<img src="/static/image/logo.png">
+				</div>
+		   		<ul class="menu">
 					<li class="nav home"><a href="/">HOME</a></li>
 					<li class="nav search"><a href="javascript:void(0)" onclick="showBorder()">SEARCH</a></li>
 					<!--弹出框-->
@@ -33,7 +36,7 @@
 						<form action="/search_results/" >
 							<div class="search_ipt">
 								<input type="text" class="ipt" placeholder="书名、关键词" name="search">
-								<input type="submit" src="./image/search.png" class="search_logo" alt="search" value="搜索">
+								<input type="submit" class="search_logo" alt="search" value="">
 	    				</div>
 							<div class="choose">
 		    				<input type="radio" name="range" value="can"/>可借
@@ -48,41 +51,45 @@
 							</ul>
 	 					</form>
 						</div>
-						<div id="fade" class="black_overlay"></div>
+						
 
 				{% if current_user.is_authenticated() %}
 					<li class="nav user"><a href="/user/{{ current_user.username }}">Hi!{{ current_user.username }}</a></li>
 					<li class="nav log"><a href="/logout">LOG OUT</a></li>
 				{% else %}
-					<li class="nav log"><a href="javascript:void(0)" onclick="showBorder()" >LOG ON</a></li>
-						<div id="content" class="light_content users">
-							<div class="dengLu">登录</div>
-							<form id="users_logOn">
-								<p class="logOn_input">	
+					<li class="nav log"><a href="javascript:;" onclick="showBorderLog()">LOG ON</a></li>
+						<div id="content_log" class="light_content users">
+				{% block form_content %}{% endblock %}
+							<!--div class="dengLu">登录</div>
+							<form method="post">
+								<p class="logOn_input">
 									<label class="logo name" for="name"></label>
-									<input type="text" class="logOn_input_text"id="name">
+									<input type="text" class="logOn_input_text" name="username">
 									<span class="logOn_text">姓名</span>
 								</p>
-								<p class="logOn_input">	
+								<p class="logOn_input">
 									<label class="logo code" for="code"></label>
-									<input type="text" class="logOn_input_text"id="code">
+									<input type="password" class="logOn_input_text">
 									<span class="logOn_text">密码</span>
 								</p>
 									<input type="submit" class="btn go" value="登录">
 	 						</form>
 
-	 						<div class="btn close"><a href="javascript:void(0)" onclick="hideBorder()">取消</a>
-							</div>
+	 						<div class="btn cancel"><a href="javascript:void(0)" onclick="hideBorderLog()">取消</a>
+							</div-->
 
 						</div>
-						<div id="fade" class="black_overlay"></div>
+						
 				{% endif %}
+
 			</ul>
-		</nav>
-	</div>
+			
+	</div>	
+	<div id="fade" class="black_overlay"></div>
+				<div id="fade_log" class="black_overlay"></div>
   {% block page_content %}{% endblock %}
   <div class="zhanwei">木犀工作室出品</div>
-  </div>
+  
 {% block script_file %}{% endblock %}
 </body>
 </html>
