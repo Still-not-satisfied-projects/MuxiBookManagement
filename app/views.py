@@ -19,8 +19,8 @@
 
 from . import app, db
 from app.models import User, Book
-from app.forms import BookForm, GetForm, BackForm, LoginForm
-from flask import render_template, redirect, url_for, session, flash, request
+from app.forms import BookForm, GetForm, LoginForm, RterForm
+from flask import render_template, redirect, url_for, flash, request
 from flask.ext.login import login_user, logout_user, login_required, \
     current_user
 from urllib2 import urlopen
@@ -44,7 +44,7 @@ def home():
 
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user is not None:
+        if user is not None and user.verify_password(form.password.data):
             login_user(user)
             return redirect(url_for('user', username=current_user.username))
         flash('该用户不存在')
@@ -107,6 +107,17 @@ def info(name):
         book.end = (start + datetime.timedelta(day)).strftime("%Y-%m-%d %H:%M:%S")
         return redirect(url_for('user', username=current_user.username))
     return render_template('info.html', book=book, form=form)
+
+
+@app.route('/rter', methods=["POST", "GET"])
+def rter():
+    """用户注册接口"""
+    form = RterForm()
+    if form.validate_on_submit():
+        u = User(username=form.username.data, password=form.password.data)
+        db.session.add(u)
+        db.session.commit()
+    return render_template('r.html', form=form)
 
 
 @app.route('/bookin', methods=["POST", "GET"])

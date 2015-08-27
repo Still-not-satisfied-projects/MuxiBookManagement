@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<div class="lala">
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.password1 }}
+        {{ form.submit }}
+    </form>
+</div>
+{% endblock %}
