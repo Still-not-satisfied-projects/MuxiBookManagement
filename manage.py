@@ -28,8 +28,6 @@ from app import app, db
 from app.models import Book, User
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
-from flask.ext.admin import Admin
-from flask.ext.admin.contrib.sqla import ModelView
 
 
 """编码设置"""
@@ -39,7 +37,6 @@ sys.setdefaultencoding('utf-8')
 
 manager = Manager(app)
 migrate = Migrate(app, db)
-admin = Admin(app, name='木犀图书')
 
 
 def make_shell_context():
@@ -54,10 +51,6 @@ def make_shell_context():
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
-
-
-admin.add_view(ModelView(Book, db.session))
-admin.add_view(ModelView(User, db.session))
 
 
 @manager.command
