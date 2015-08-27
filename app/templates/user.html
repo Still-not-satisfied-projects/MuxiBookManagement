@@ -36,7 +36,7 @@
 					</div>
 				</div>
 			</div>
-		
+
 	{% endfor %}
 </div>	<!--占位-->
 <div class="right">
@@ -49,7 +49,7 @@
 					<p class="title">{{ book.name }}</p>
 				</a>
 				 	<p class="book_back">还书</p>
-		
+
 				 		<div class="book_tags">
 							<p>到期时间：{{ book.end }}</p>
 							 <form action="/user/{{ current_user.username}}">
@@ -59,8 +59,8 @@
 					 	</div>
 				</div>
 			</div>
-		</div>
 	{% endfor %}
+</div>
 </div>
 </div>
 {% endblock %}

@@ -29,10 +29,10 @@
 		   		<ul class="menu">
 					<li class="nav home"><a href="/">HOME</a></li>
 					<li class="nav search"><a href="javascript:void(0)" onclick="showBorder()">SEARCH</a></li>
-					<!--弹出框-->	
+					<!--弹出框-->
 						<a href="javascript:void(0)" onclick="hideBorder()"><div class="close" id="close"></div></a>
 					<!--关闭 -->
-						
+
 						<div id="content" class="light_content">
 						<div class="search_word">搜索</div>
 						<form action="/search_results/" >
@@ -53,7 +53,7 @@
 							</ul>
 	 					</form>
 						</div>
-						
+
 
 				{% if current_user.is_authenticated() %}
 					<li class="nav user"><a href="/user/{{ current_user.username }}">Hi!{{ current_user.username }}</a></li>
@@ -81,21 +81,21 @@
 							</div-->
 
 						</div>
-						
+
 				{% endif %}
 
 			</ul>
-			
-	</div>	
+
+	</div>
 	<div id="fade" class="black_overlay"></div>
-				<div id="fade_log" class="black_overlay"></div> 
+				<div id="fade_log" class="black_overlay"></div>
 
  {% block page_content %}{% endblock %}
 
- 
+
 {% block script_file %}{% endblock %}
 <div class="footer">
-  	<div class="footer_word"><p class="word_first">木犀工作室出品</p><p class="word_second">power by flask</p></div>
+  	<div class="footer_word"><p class="word_first">木犀工作室出品</p><p class="word_second">powered by flask</p></div>
   </div>
 </body>
 </html>

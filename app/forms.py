@@ -9,7 +9,7 @@
 from flask.ext.wtf import Form
 from wtforms import IntegerField, StringField, SubmitField, PasswordField, \
         BooleanField
-from wtforms.validators import Required
+from wtforms.validators import Required, EqualTo
 
 
 class SearchForm(Form):
@@ -47,3 +47,11 @@ class BackForm(Form):
     """归还表单"""
     status = BooleanField('归还')
     back = SubmitField('归还此书')
+
+
+class RterForm(Form):
+    """注册表单"""
+    username = StringField('用户名')
+    password = PasswordField('密码', validators=[Required(), EqualTo('password1', message="密码匹配")])
+    password1 = PasswordField('确认密码', validators=[Required()])
+    submit = SubmitField('注册')
