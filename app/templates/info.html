@@ -13,12 +13,14 @@
     <h3>{{ book.author }}</h3>
     <h3>{{ book.summary}}</h3>
   </div>
-  {% if book.status == False %}
-    <form method="post">
-      {{ form.hidden_tag() }}
-      {{ form.day }}
-      {{ form.submit }}
-    </form>
+  {% if current_user.is_authenticated() %}
+    {% if book.status == False %}
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {{ form.day }}
+            {{ form.submit }}
+        </form>
+    {% endif %}
   {% endif %}
 {% endblock%}
 

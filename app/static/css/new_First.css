@@ -52,7 +52,7 @@
 }
 .close:hover{
 
-	
+
 	}
 .search_word{
 	line-height: 110px;
@@ -81,7 +81,7 @@
 		border: none;
 	}
 .choose{
-		margin:15px;
+		margin:18px;
 	}
 .choose label{
 	margin:0 20px;
@@ -92,7 +92,7 @@
 }
 
 .tags li a{
-		font-size: 14px;
+		font-size: 15px;
 		font-weight: 600;
 		float: left;
 		color: black;
