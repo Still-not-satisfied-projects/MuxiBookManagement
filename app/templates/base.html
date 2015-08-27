@@ -29,18 +29,20 @@
 		   		<ul class="menu">
 					<li class="nav home"><a href="/">HOME</a></li>
 					<li class="nav search"><a href="javascript:void(0)" onclick="showBorder()">SEARCH</a></li>
-					<!--弹出框-->
-						<div id="content" class="light_content search_content">
-							<div class="close"><a href="javascript:void(0)" onclick="hideBorder()">关闭</a>
-						</div>
+					<!--弹出框-->	
+						<a href="javascript:void(0)" onclick="hideBorder()"><div class="close" id="close"></div></a>
+					<!--关闭 -->
+						
+						<div id="content" class="light_content">
+						<div class="search_word">搜索</div>
 						<form action="/search_results/" >
 							<div class="search_ipt">
 								<input type="text" class="ipt" placeholder="书名、关键词" name="search">
 								<input type="submit" class="search_logo" alt="search" value="">
 	    				</div>
 							<div class="choose">
-		    				<input type="radio" name="range" value="can"/>可借
-		    				<input type="radio" name="range" value="all"/>全部
+		    				<input type="radio" name="range" value="can" id="canBorrow"/><label for="canBorrow">可借</label>
+		    				<input type="radio" name="range" value="all" id="all"/><label for="range_all">全部</label>
 							</div>
 							<ul class="tags">
 								<li><a href="/search_results/?search=前端&range=all">前端</a></li>
@@ -86,10 +88,14 @@
 			
 	</div>	
 	<div id="fade" class="black_overlay"></div>
-				<div id="fade_log" class="black_overlay"></div>
-  {% block page_content %}{% endblock %}
-  <div class="zhanwei">木犀工作室出品</div>
-  
+				<div id="fade_log" class="black_overlay"></div> 
+
+ {% block page_content %}{% endblock %}
+
+ 
 {% block script_file %}{% endblock %}
+<div class="footer">
+  	<div class="footer_word"><p class="word_first">木犀工作室出品</p><p class="word_second">power by flask</p></div>
+  </div>
 </body>
 </html>

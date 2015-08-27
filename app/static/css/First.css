@@ -1,9 +1,10 @@
 .bgimage{
-	position: absolute;
-	height: 100px;
+	
+	height: 250px;
 	width: 100%;
-	margin-top: -750px;
 	z-index: -999;
+	margin-bottom: -175px;
+	
 }
 .bgimage img{
 	width: 100%;
@@ -11,11 +12,11 @@
 .container{
 	margin: 70px auto;
 	width: 1100px;
-	font-family: 微软雅黑;
 	background-color: #eee;
 	border: transparent solid;
 	overflow: hidden;
 	margin: -10px auto 0 ;
+	padding-bottom: 70px;
 }
 a{
 	text-decoration: none;
@@ -168,4 +169,21 @@ a:hover{
         background-color: #fff843;
         border-radius: 5px;
         width: 0;
+}
+.footer{
+	width: 100%;
+	text-align: center;
+	background-color:  #332a1c;
+}
+.footer_word{
+	color: #eee;
+
+}
+.word_first{
+	font-size: 15px;
+	line-height: 60px;
+}
+.word_second{
+	font-size: 12px;
+	line-height: 50px;
 }
