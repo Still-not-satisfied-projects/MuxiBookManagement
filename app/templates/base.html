@@ -3,15 +3,17 @@
 <head>
 	<meta charset="UTF-8">
   {% block title %}{% endblock %}
+	<!-- 消息闪现 -->
   {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
       <li>{{ message }}</li>
     {% endfor %}
-    </ul>
+	  </ul>
   {% endif %}
   {% endwith %}
+
   {% block css_file %}<!-- link css file -->{% endblock %}
 </head>
 <body>
@@ -40,10 +42,10 @@
 								<input type="text" class="ipt" placeholder="书名、关键词" name="search">
 								<input type="submit" class="search_logo" alt="search" value="">
 	    				</div>
-							<div class="choose">
+							<!--div class="choose">
 		    				<input type="radio" name="range" value="can" id="canBorrow"/><label for="canBorrow">可借</label>
 		    				<input type="radio" name="range" value="all" id="all"/><label for="range_all">全部</label>
-							</div>
+							</div-->
 							<ul class="tags">
 								<li><a href="/search_results/?search=前端&range=all">前端</a></li>
 								<li><a href="/search_results/?search=后台&range=all">后台</a></li>
