@@ -23,8 +23,7 @@ from functools import wraps
 from app.models import User, Book
 from app.forms import BookForm, GetForm, LoginForm, RterForm
 from flask import render_template, redirect, url_for, flash, request
-from flask.ext.login import login_user, logout_user, login_required, \
-    current_user
+from flask.ext.login import login_user, logout_user, login_required, current_user
 from urllib2 import urlopen
 import json
 import datetime
@@ -51,7 +50,7 @@ def home():
         new_book_list: 最近录入新书列表(默认为6本, 依据时间[id]排序)
     """
     form = LoginForm()
-    new_book_list = Book.query.order_by('-id').all()[:6]
+    new_book_list = Book.query.order_by('-id').all()[:9]
     get_book_list = Book.query.filter_by(status=True).order_by('start desc').all()[:2]
 
     if form.validate_on_submit():
@@ -97,12 +96,16 @@ def search_results():
     results = Book.query.whoosh_search(search, app.config['MAX_SEARCH_RESULTS'])
 
     for book in results[:]:
+        """
+        # 默认搜索结果全部为可借阅图书
         if request.args.get('range') == 'can':
             if book.status != True:
             # 跳过不可借阅图书
                 get_book_list.append(book)
         if request.args.get('range') == 'all':
             get_book_list.append(book)
+        """
+        get_book_list.append(book)
 
     return render_template('search_results.html',
                            get_book_list=get_book_list,
