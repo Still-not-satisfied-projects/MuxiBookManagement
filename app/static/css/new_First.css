@@ -173,3 +173,50 @@
 	display: inline-block;
 	line-height: 38px;
 }
+/*搜索结果页*/
+.result_bgc{
+	width: 100%;
+	background-color: #fff843;
+	margin-top: 30px;
+	padding-top: 17px;
+	padding-bottom: 20px;
+}
+.result_bookinformation{
+	background-color: #332a1c;
+	width: 880px;
+	margin: 17px auto 65px;
+	height: 120px;
+	position: relative;
+	color: #eee;
+}
+.result_book{
+	width: 120px;
+	height: 155px;
+	position: absolute;
+	top: 8px;
+	right: 50px;
+}
+.result_bookinformation .left{
+	width: 510px;
+	height: 100%;
+	margin: 10px 0 10px 50px;
+	
+}
+.result_bookinformation .left p{
+	text-indent: 2em;
+	font-size: 15px;
+	line-height: 18px;
+}
+.result_bookinformation .left p a{
+	color: #fff843;
+}
+.result_borrow{
+	background-color: #fff843;
+	border-radius: 2px;
+	color: #332a1c;
+	display: inline-block;
+	line-height: 30px;
+	text-align: center;
+	margin: 50px;
+	width: 40px;
+}
