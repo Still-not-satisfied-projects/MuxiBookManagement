@@ -8,20 +8,26 @@
 {% endblock %}
 
 {% block page_content %}
-<div class="result">
-    <head>{{ search }} 的搜索结果: </head>
-    <hr/>
+<div class="container">
+  <div class="result_bgc">
     {% for book in get_book_list %}
-      <img src={{ book.image }}>
-      <h3>书名：{{ book.name }}</h3>
-      <h3>类别: {{ book.tag }}</h3>
+    <div class="result_bookinformation">
+        <div class="left">
+          <h4>书名：{{ book.name }}</h4>
+          <p><strong>类别:</strong> {{ book.tag }}</p> 
+          <p>{{ book.summary[:100] }}...<a href="/info/{{ book.name }}"><span>详情</span></a></p>
+        </div>
       {% if book.status %}
-        <h3>已借</h3>
+        <span class="result_borrow">已借</span>
       {% else %}
-        <h3>未借</h3>
+        <span class="result_borrow">未借</span>
       {% endif %}
-      <a href="/info/{{ book.name }}"><h3>详情</h3></a>
+     
+     <div class="result_book">
+          <a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a></div>
+    </div>
     {% endfor %}
+  </div>
 </div>
 {% endblock %}
 
