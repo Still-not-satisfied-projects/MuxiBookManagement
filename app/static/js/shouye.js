@@ -46,3 +46,54 @@ function hideBorderLog(){
 	document.getElementById('content_log').style.display = 'none' ;
 	document.getElementById('fade_log').style.display = 'none' ;
 }
+/*首页新增图书导航*/
+$(document).ready(function(){
+var boxwidth;
+var boxheight;
+var leftnum;
+var current;
+var left;
+current = 0;
+boxwidth = $(".showbox").css("width");
+boxheight = $(".showbox").css("height");
+boxwidthnum = $(".showbox").width();
+$(".box").css("height",boxheight);
+$(".box").css("width",boxwidth);
+$(".slide").width(boxwidthnum*($(".box").length));
+$(".slide").css("height",boxheight);
+$("#prev").bind("click",function(){
+	prev(current);
+});
+$("#next").bind("click",function(){
+	next(current);
+});
+function next(num){
+	if (current == ($(".box").length-1))
+  {
+  current = 0;
+  $(".slide").animate({left:current*(-boxwidthnum) + 'px'});
+  }
+else
+  {
+  current += 1;
+  $(".slide").animate({left:current*(-boxwidthnum) + 'px'});
+ }
+};
+	function prev(num){
+	
+	if (current == 0)
+  {
+  current = $(".box").length-1;
+  $(".slide").animate({left:current*(-boxwidthnum) + 'px'});
+  }
+else
+  {
+  current -= 1;
+  $(".slide").animate({left:current*(-boxwidthnum) + 'px'});
+ 
+  }
+	
+};
+});
+
+
