@@ -218,7 +218,7 @@ a:hover{
 }
 .content_nav>li>a:hover{
 	color: #eee;
-	background-color:#332a1c; 
+	background-color:#332a1c;
 }
 .content_nav>li.nav:hover ul{
 	display:block;
@@ -248,7 +248,7 @@ a:hover{
 }*/
 .showbox{
 	width: 640px;
-	height: 800px;
+	height: 630px;
 	overflow: hidden;
 	position: relative;
 }
@@ -265,11 +265,11 @@ a:hover{
 	background:transparent url(../image/prev.png) no-repeat 100%;
 }
 #next{
-	background: transparent url(../image/next.png) no-repeat 100%;	
+	background: transparent url(../image/next.png) no-repeat 100%;
 }
 .content .btn{
 	width: 25px;
 	height: 25px;
 	float: right;
-	margin: 0 35px 0 -10px; 
+	margin: 0 35px 0 -10px;
 }
