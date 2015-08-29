@@ -50,10 +50,10 @@
 			   <div class="content">新增图书
 			   		<div id="next" class="btn"></div>
 					<div id="prev" class="btn"></div>
-					
+
 			   </div>
 
-			
+
 			<!--<ul class="content_nav">
 				<li class="nav fe"><a href="javascript:void">前端</a>
 					<ul>
@@ -214,7 +214,7 @@
 		  <div class="showbox">
 		   <ul class="slide">
 		  	<li class="box">
-			{% for book in new_book_list %}
+			{% for book in new_book_list[:6] %}
 				<div class="new_book">
 					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
 
@@ -235,7 +235,7 @@
 			{% endfor %}
 			</li>
 			<li class="box">
-			{% for book in new_book_list %}
+			{% for book in new_book_list[6:12] %}
 				<div class="new_book">
 					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
 
@@ -256,7 +256,7 @@
 			{% endfor %}
 			</li>
 			<li class="box">
-			{% for book in new_book_list %}
+			{% for book in new_book_list[12:18] %}
 				<div class="new_book">
 					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
 
