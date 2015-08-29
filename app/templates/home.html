@@ -47,7 +47,150 @@
 
 <div class="container">
 		<div class="left">
-				<p class="content">新增图书</p>
+			   <div class="content">新增图书
+			   		<div id="next" class="btn"></div>
+					<div id="prev" class="btn"></div>
+					
+			   </div>
+
+			
+			<!--<ul class="content_nav">
+				<li class="nav fe"><a href="javascript:void">前端</a>
+					<ul>
+					{% for book in new_book_list[:9] %}
+							<li class="new_book">
+								<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+									<div class="book_information">
+										<a href="/info/{{ book.name }}">
+										<p class="title">{{ book.name}}</p>
+									 	<p class="author">{{ book.author }}</p>
+									 </a>
+									 <div class="book_tags">
+									 	<p>
+									    类别：{{ book.tag }}<br/>
+											<br/>
+											{{ book.summary[:100] }}...
+										</p>
+									 </div>
+									</div>
+								</li>
+					{% endfor %}
+					</ul>
+				</li>
+				<li class="nav bd"><a href="javascript:void">后台</a>
+						<ul>
+					{% for book in new_book_list[:4] %}
+							<li class="new_book">
+								<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+									<div class="book_information">
+										<a href="/info/{{ book.name }}">
+										<p class="title">{{ book.name}}</p>
+									 	<p class="author">{{ book.author }}</p>
+									 </a>
+									 <div class="book_tags">
+									 	<p>
+									    类别：{{ book.tag }}<br/>
+											<br/>
+											{{ book.summary[:100] }}...
+										</p>
+									 </div>
+									</div>
+								</li>
+					{% endfor %}
+					</ul>
+				</li>
+				<li class="nav ds"><a href="javascript:void">设计</a>
+					<ul>
+					{% for book in new_book_list[:1] %}
+							<li class="new_book">
+								<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+									<div class="book_information">
+										<a href="/info/{{ book.name }}">
+										<p class="title">{{ book.name}}</p>
+									 	<p class="author">{{ book.author }}</p>
+									 </a>
+									 <div class="book_tags">
+									 	<p>
+									    类别：{{ book.tag }}<br/>
+											<br/>
+											{{ book.summary[:100] }}...
+										</p>
+									 </div>
+									</div>
+								</li>
+					{% endfor %}
+					</ul></li>
+				<li class="nav ad"><a href="javascript:void">安卓</a>
+					<ul>
+					{% for book in new_book_list[:3] %}
+							<li class="new_book">
+								<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+									<div class="book_information">
+										<a href="/info/{{ book.name }}">
+										<p class="title">{{ book.name}}</p>
+									 	<p class="author">{{ book.author }}</p>
+									 </a>
+									 <div class="book_tags">
+									 	<p>
+									    类别：{{ book.tag }}<br/>
+											<br/>
+											{{ book.summary[:100] }}...
+										</p>
+									 </div>
+									</div>
+								</li>
+					{% endfor %}
+					</ul></li>
+				<li class="nav it"><a href="javascript:void">互联网</a>
+					<ul>
+					{% for book in new_book_list[:6] %}
+							<li class="new_book">
+								<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+									<div class="book_information">
+										<a href="/info/{{ book.name }}">
+										<p class="title">{{ book.name}}</p>
+									 	<p class="author">{{ book.author }}</p>
+									 </a>
+									 <div class="book_tags">
+									 	<p>
+									    类别：{{ book.tag }}<br/>
+											<br/>
+											{{ book.summary[:100] }}...
+										</p>
+									 </div>
+									</div>
+								</li>
+					{% endfor %}
+					</ul></li>
+				<li class="nav ot"><a href="javascript:void">其他</a>
+					<ul>
+					{% for book in new_book_list[:2] %}
+							<li class="new_book">
+								<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+									<div class="book_information">
+										<a href="/info/{{ book.name }}">
+										<p class="title">{{ book.name}}</p>
+									 	<p class="author">{{ book.author }}</p>
+									 </a>
+									 <div class="book_tags">
+									 	<p>
+									    类别：{{ book.tag }}<br/>
+											<br/>
+											{{ book.summary[:100] }}...
+										</p>
+									 </div>
+									</div>
+								</li>
+					{% endfor %}
+					</ul></li>
+			</ul>
+		</div>
 			{% for book in new_book_list %}
 				<div class="new_book">
 					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
@@ -67,7 +210,75 @@
 						</div>
 					</div>
 			{% endfor %}
-		</div>
+			<!--<ul class>-->
+		  <div class="showbox">
+		   <ul class="slide">
+		  	<li class="box">
+			{% for book in new_book_list %}
+				<div class="new_book">
+					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+						<div class="book_information">
+							<a href="/info/{{ book.name }}">
+							<p class="title">{{ book.name}}</p>
+						 	<p class="author">{{ book.author }}</p>
+						 </a>
+						 <div class="book_tags">
+						 	<p>
+						    类别：{{ book.tag }}<br/>
+								<br/>
+								{{ book.summary[:100] }}...
+							</p>
+						 </div>
+						</div>
+					</div>
+			{% endfor %}
+			</li>
+			<li class="box">
+			{% for book in new_book_list %}
+				<div class="new_book">
+					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+						<div class="book_information">
+							<a href="/info/{{ book.name }}">
+							<p class="title">{{ book.name}}</p>
+						 	<p class="author">{{ book.author }}</p>
+						 </a>
+						 <div class="book_tags">
+						 	<p>
+						    类别：{{ book.tag }}<br/>
+								<br/>
+								{{ book.summary[:100] }}...
+							</p>
+						 </div>
+						</div>
+					</div>
+			{% endfor %}
+			</li>
+			<li class="box">
+			{% for book in new_book_list %}
+				<div class="new_book">
+					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+
+						<div class="book_information">
+							<a href="/info/{{ book.name }}">
+							<p class="title">{{ book.name}}</p>
+						 	<p class="author">{{ book.author }}</p>
+						 </a>
+						 <div class="book_tags">
+						 	<p>
+						    类别：{{ book.tag }}<br/>
+								<br/>
+								{{ book.summary[:100] }}...
+							</p>
+						 </div>
+						</div>
+					</div>
+			{% endfor %}
+			</li>
+		  </ul>
+	    </div>
+	</div>
 
 		<div class="right">
 				<span class="content">最近借阅</span>
@@ -99,6 +310,5 @@
 
 {% block script_file %}
   <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
-
   <script type="text/javascript" src="/static/js/shouye.js"></script>
 {% endblock %}
