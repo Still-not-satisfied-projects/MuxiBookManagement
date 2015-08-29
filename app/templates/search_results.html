@@ -23,8 +23,15 @@
         <span class="result_borrow">未借</span>
       {% endif %}
      
-     <div class="result_book">
-          <a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a></div>
+         <div class="result_book">
+          <a href="/info/{{ book.name }}">
+            <img src={{ book.image }} alt="" class="book">
+            <div class="result_book_content">
+              <p class="title_hid">{{ book.name}}</p>
+              <p class="author">{{ book.author }}</p>
+            </div>
+          </a>
+        </div>
     </div>
     {% endfor %}
   </div>

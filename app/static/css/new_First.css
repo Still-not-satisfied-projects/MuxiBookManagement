@@ -89,6 +89,7 @@
 }*/
 .tags li{
 	display: inline-block;
+	margin-left: -9px;
 }
 
 .tags li a{
@@ -97,8 +98,9 @@
 		float: left;
 		color: black;
 		margin:40px 0;
-		width: 60px;
+		width: 70px;
 		line-height: 25px;
+
 	}
 .tags li a:hover{
 		background-color:#332a1c ;
@@ -124,10 +126,10 @@
 	border-radius:5px;
 }
 .name{
-	background: #fff url(../image/logo_input.png) no-repeat 0 0;
+	background: transparent url(../image/logo_input.png) no-repeat 0 0;
 }
 .code{
-	background: #fff url(../image/logo_input.png) no-repeat 0 -38px;
+	background: transparent url(../image/logo_input.png) no-repeat 0 -38px;
 }
 .logOn_input_text input{
 	height: 55px;
@@ -196,18 +198,28 @@
 	top: 8px;
 	right: 50px;
 }
-.result_bookinformation .left{
+.result_book_content{
+	width: 100%;
+	height: 45px;
+	text-align: center;
+	color: #eee;
+	position: absolute;
+	bottom: 0;
+	background-color: #332a1c;
+	overflow: hidden;
+}
+.result_bookinformation>.left{
 	width: 510px;
 	height: 100%;
 	margin: 10px 0 10px 50px;
 	
 }
-.result_bookinformation .left p{
+.result_bookinformation>.left p{
 	text-indent: 2em;
 	font-size: 15px;
 	line-height: 18px;
 }
-.result_bookinformation .left p a{
+.result_bookinformation>.left p a{
 	color: #fff843;
 }
 .result_borrow{
@@ -220,3 +232,4 @@
 	margin: 50px;
 	width: 40px;
 }
+/*书籍信息页面*/

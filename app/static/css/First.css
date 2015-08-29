@@ -1,6 +1,6 @@
 .bgimage{
 
-	height: 250px;
+	height: 185px;
 	width: 100%;
 	z-index: -999;
 	margin-bottom: -175px;
@@ -11,7 +11,7 @@
 }
 .container{
 	margin: 70px auto;
-	width: 1100px;
+	width: 1094px;
 	background-color: #eee;
 	border: transparent solid;
 	overflow: hidden;
@@ -73,19 +73,7 @@ a:hover{
 	color: #fff843;
 
 }
-.left{
-	float: left;
-	width:640px;
-	margin: 60px 0 0 50px;
-}
- .content{
-	display:block;
-	font-size: 21px;
-	color: #332a1c;
-	font-weight: 600;
-	border-bottom: #332a1c 2px solid;
-	padding-bottom: 14px;
-}
+
 .new_book{
 	margin-top: 30px;
 	float: left;
@@ -146,9 +134,6 @@ a:hover{
 	float: left;
 	margin:60px 0 5px 98px;
 }
-.zhanwei{
-	height: 1px;
-}
 .book_tags{
 	border-top:#6e6961 2px solid;
 	margin-top: 10px;
@@ -188,4 +173,103 @@ a:hover{
 	color: #eee;
 	font-size: 12px;
 	line-height: 50px;
+}
+/*首页最新录入类别导航*/
+.left{
+	float: left;
+	width:640px;
+	margin: 60px 0 0 50px;
+	position: relative;
+}
+ .content{
+	display:block;
+	font-size: 21px;
+	color: #332a1c;
+	font-weight: 600;
+	border-bottom: #332a1c 2px solid;
+	padding-bottom: 14px;
+	width: 640px;
+}
+
+/*.content>p{
+	display: inline-block;
+	margin-right: 10px;
+}
+.content_nav{
+	display: inline-block;
+	margin-bottom: -19px;
+	text-align: center;
+}
+.content_nav>li {
+	display: inline-block;
+	font-size: 17px;
+	float: left;
+	position: relative;
+}
+.content_nav>li ul{
+	display: none;
+}
+.content_nav>li>a{
+	display: block;
+	height: 35px;
+	color:#332a1c;
+	width: 85px;
+	border-radius: 3px;
+}
+.content_nav>li>a:hover{
+	color: #eee;
+	background-color:#332a1c; 
+}
+.content_nav>li.nav:hover ul{
+	display:block;
+	position: absolute;
+	background-color: #eee;
+	width: 640px;
+	z-index: 99;
+	height: 840px;
+}
+.content_nav>li.fe:hover ul{
+		left: -99px;
+}
+.content_nav>li.bd:hover ul{
+	left: -184px;
+}
+.content_nav>li.ds:hover ul{
+	left:-269px;
+}
+.content_nav>li.ad:hover ul{
+	left: -354px;
+}
+.content_nav>li.it:hover ul{
+	left: -439px
+}
+.content_nav>li.ot:hover ul{
+	left: -524px;
+}*/
+.showbox{
+	width: 640px;
+	height: 800px;
+	overflow: hidden;
+	position: relative;
+}
+.slide{
+	position: absolute;
+	top: 0;
+}
+.slide li{
+	float: left;
+	overflow: hidden;
+	display: block;
+}
+#prev{
+	background:transparent url(../image/prev.png) no-repeat 100%;
+}
+#next{
+	background: transparent url(../image/next.png) no-repeat 100%;	
+}
+.content .btn{
+	width: 25px;
+	height: 25px;
+	float: right;
+	margin: 0 35px 0 -10px; 
 }
