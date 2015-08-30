@@ -13,12 +13,12 @@ for(var i = 0;i<length;i++){
       	if (count == length){
       		bar.style.display = "none"
       	}
-      })  
+      })
     }
 
 window.onload = function (){
 	 bar.firstElementChild.style.width = "100%";
-	
+
 	bar.style.display = "none"
 
 }
@@ -64,8 +64,14 @@ $(".slide").css("height",boxheight);
 $("#prev").bind("click",function(){
 	prev(current);
 });
+$("#prev_ever").bind("click",function(){
+	prev_ever(current);
+});
 $("#next").bind("click",function(){
 	next(current);
+});
+$("#next_ever").bind("click",function(){
+	next_ever(current);
 });
 function next(num){
 	if (current == ($(".box").length-1))
@@ -79,8 +85,20 @@ else
   $(".slide").animate({left:current*(-boxwidthnum) + 'px'});
  }
 };
+function next_ever(num){
+	if (current == ($(".box_ever").length-1))
+  {
+  current = 0;
+  $(".slide_ever").animate({left:current*(-boxwidthnum) + 'px'});
+  }
+else
+  {
+  current += 1;
+  $(".slide_ever").animate({left:current*(-boxwidthnum) + 'px'});
+ }
+};
 	function prev(num){
-	
+
 	if (current == 0)
   {
   current = $(".box").length-1;
@@ -90,10 +108,23 @@ else
   {
   current -= 1;
   $(".slide").animate({left:current*(-boxwidthnum) + 'px'});
- 
+
   }
-	
+
+};
+function prev_ever(num){
+
+if (current == 0)
+{
+current = $(".box_ever").length-1;
+$(".slide_ever").animate({left:current*(-boxwidthnum) + 'px'});
+}
+else
+{
+current -= 1;
+$(".slide_ever").animate({left:current*(-boxwidthnum) + 'px'});
+
+}
+
 };
 });
-
-
