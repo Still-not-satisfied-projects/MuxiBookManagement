@@ -1,9 +1,10 @@
 .bgimage{
-
-	height: 185px;
+	background: transparent url(../image/bgimage.png) no-repeat;
+	background-size: 100%;
+	height: 20%;
 	width: 100%;
 	z-index: -999;
-	margin-bottom: -175px;
+
 
 }
 .bgimage img{
