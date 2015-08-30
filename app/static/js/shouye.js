@@ -132,3 +132,7 @@ $(".slide_ever").animate({left:current*(-boxwidthnum) + 'px'});
 function fade(){
   $("#flashes").fadeOut('fast');
 }
+//借阅框内文字
+function content(){
+  document.getElementById("day").setAttribute("value","借阅天数(天)");
+}
