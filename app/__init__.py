@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////path/to/data.sqlite"  # 系�
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['WHOOSH_BASE'] = "search.db"
 app.config['MAX_SEARCH_RESULTS'] = 5  # 最大加载5个搜索结果
+app.config['UPLOAD_FOLDER'] = '/Users/apple/www/project/MuxiBookManagement/app/static/image/'
 
 
 db = SQLAlchemy(app)

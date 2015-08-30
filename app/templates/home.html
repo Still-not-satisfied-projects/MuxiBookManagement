@@ -213,27 +213,29 @@
 			<!--<ul class>-->
 		  <div class="showbox">
 		   <ul class="slide">
+        {% for i in range_book_count %}
 		  	<li class="box">
-			{% for book in new_book_list[:6] %}
-				<div class="new_book">
-					<a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
-
-						<div class="book_information">
-							<a href="/info/{{ book.name }}">
-							<p class="title">{{ book.name}}</p>
-						 	<p class="author">{{ book.author }}</p>
-						 </a>
+			   {% for book in new_book_list[i*6:(i+1)*6] %}
+				     <div class="new_book">
+					          <a href="/info/{{ book.name }}"><img src={{ book.image }} alt="" class="book"></a>
+                    <div class="book_information">
+							      <a href="/info/{{ book.name }}">
+						                <p class="title">{{ book.name}}</p>
+						 	              <p class="author">{{ book.author }}</p>
+						        </a>
 						 <div class="book_tags">
-						 	<p>
+						 <p>
 						    类别：{{ book.tag }}<br/>
 								<br/>
 								{{ book.summary[:100] }}...
-							</p>
+						 </p>
 						 </div>
-						</div>
-					</div>
+						  </div>
+					  </div>
 			{% endfor %}
 			</li>
+    {% endfor %}
+<!--
 			<li class="box">
 			{% for book in new_book_list[6:12] %}
 				<div class="new_book">
@@ -255,6 +257,7 @@
 					</div>
 			{% endfor %}
 			</li>
+
 			<li class="box">
 			{% for book in new_book_list[12:18] %}
 				<div class="new_book">
@@ -276,6 +279,7 @@
 					</div>
 			{% endfor %}
 			</li>
+  -->
 		  </ul>
 	    </div>
 	</div>

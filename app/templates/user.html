@@ -9,8 +9,16 @@
 {% block page_content %}
 <div class="container">
 	<div class="left">
-		<span class="content">历史借阅</span>
-		{% for book in book_list %}
+    <div class="content">正在借阅
+      <div id="next" class="btn"></div>
+      <div id="prev" class="btn"></div>
+
+   </div>
+    <div class="showbox show_users">
+      <ul class="slide">
+    {% for i in range_book_count %}
+    <li class="box">
+		{% for book in book_list[i*3:(i+1)*3] %}
 		 <div class="new_book">
 			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
 			<div class="book_information">
@@ -36,30 +44,59 @@
 					</div>
 				</div>
 			</div>
-
 	{% endfor %}
+</li>
+{% endfor %}
+</ul>
+</div>
+
+
+<div class="content ever">快要过期
+  <div id="next_ever" class="btn"></div>
+  <div id="prev_ever" class="btn"></div>
+
+</div>
+<div class="showbox show_users">
+  <ul class="slide_ever">
+{% for i in range_timedonebook_count %}
+  <li class="box_ever">
+{% for book in time_done_book[i*3:(i+1)*3] %}
+ <div class="new_book">
+  <a href="#"><img src={{ book.image }} alt="" class="book"></a>
+  <div class="book_information">
+    <a href="#">
+      <p class="title">{{ book.name }}</p>
+    </a>
+      <p class="book_back">还书</p>
+
+        <div class="book_tags">
+          {% if book.end %}
+            <p>到期时间：{{ book.end }}</p>
+              <form action="/user/{{ current_user.username}}">
+                <p class="book_back">还书</p>
+                <input type="submit" name="back" value={{ book.name }}>
+              </form>
+          {% else %}
+              <p>书已到期!</p>
+              <form action="/user/{{ current_user.username}}">
+                <p class="book_back">还书</p>
+                <input type="submit" name="back" value={{ book.name }}>
+               </form>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</li>
+{% endfor %}
+</ul>
+</div>
 </div>	<!--占位-->
-<div class="right">
-		<span class="content">快要过期</span>
-		{% for book in time_done_book %}
-		 <div class="new_book">
-			<a href="#"><img src={{ book.image }} alt="" class="book"></a>
-			<div class="book_information">
-				<a href="#">
-					<p class="title">{{ book.name }}</p>
-				</a>
-				 	<p class="book_back">还书</p>
 
-				 		<div class="book_tags">
-							<p>到期时间：{{ book.end }}</p>
-							 <form action="/user/{{ current_user.username}}">
-                  	<p class="book_back">还书</p>
-                    <input type="submit" name="back" value={{ book.name }}>
-                   </form>
-					 	</div>
-				</div>
-			</div>
-	{% endfor %}
+<div class="right">
+		<span class="content">个人简介</span>
+    <img src={{ session['fileurl'] }} width="100px" height="100px">
+    <a href="/upload">上传头像</a>
 </div>
 </div>
 </div>

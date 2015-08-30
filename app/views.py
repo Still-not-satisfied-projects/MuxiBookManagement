@@ -19,14 +19,17 @@
 """
 
 from . import app, db
+from werkzeug import secure_filename
 from functools import wraps
 from app.models import User, Book
 from app.forms import BookForm, GetForm, LoginForm, RterForm
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, session
 from flask.ext.login import login_user, logout_user, login_required, current_user
 from urllib2 import urlopen
 import json
 import datetime
+import os
+
 """
                            ｜
               /------------/\-------------\
@@ -36,6 +39,15 @@ import datetime
 # ------------------------------------------------------
 #         """  我们在路上    前方不会太远 """
 # ------------------------------------------------------
+
+
+# 允许上传的文件扩展名
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+
+
+def allowed_file(filename):
+    """检查文件扩展名函数"""
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
 # 对所有访客可见
@@ -60,8 +72,11 @@ def home():
             return redirect(url_for('user', username=current_user.username))
         flash('用户名或密码错误!')
 
+    range_book_count = range(len(new_book_list)/6 + 1)
+
     return render_template('home.html', new_book_list=new_book_list,
-                           get_book_list=get_book_list, form=form)
+                           get_book_list=get_book_list, form=form,
+                           range_book_count=range_book_count)
 
 
 # 对所有访客可见
@@ -106,6 +121,7 @@ def search_results():
             get_book_list.append(book)
         """
         get_book_list.append(book)
+
 
     return render_template('search_results.html',
                            get_book_list=get_book_list,
@@ -227,6 +243,27 @@ def user(username):
         flash('%s 已归还!' % book.name)
         return redirect(url_for('user', username=current_user.username))
 
+    range_book_count = range(len(book_list)/3 + 1)
+    range_timedonebook_count = range(len(time_done_book)/3 + 1)
+
     return render_template('user.html', username=username,
                            time_done_book=time_done_book[:2],
-                           book_list=book_list)
+                           book_list=book_list,
+                           range_book_count=range_book_count,
+                           range_timedonebook_count=range_timedonebook_count,
+                           session=session)
+
+
+@app.route('/upload', methods=["POST", "GET"])
+@login_required
+def upload_file():
+    """上传文件函数"""
+    session['fileurl'] = 'http://127.0.0.1:5000/static/image/logo.png'
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            session['fileurl'] = 'http://121.0.0.1:5000/static/image/%s' % filename
+            return redirect(url_for('user', username=current_user.username))
+    return render_template('upload.html')

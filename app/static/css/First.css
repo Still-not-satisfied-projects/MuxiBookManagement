@@ -261,10 +261,10 @@ a:hover{
 	overflow: hidden;
 	display: block;
 }
-#prev{
+#prev,#prev_ever{
 	background:transparent url(../image/prev.png) no-repeat 100%;
 }
-#next{
+#next,#next_ever{
 	background: transparent url(../image/next.png) no-repeat 100%;
 }
 .content .btn{
@@ -272,4 +272,10 @@ a:hover{
 	height: 25px;
 	float: right;
 	margin: 0 35px 0 -10px;
+}
+.show_users{
+	height:280px;
+}
+.ever{
+	margin-top: 50px;
 }
