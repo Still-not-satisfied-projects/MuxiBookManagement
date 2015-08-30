@@ -128,3 +128,7 @@ $(".slide_ever").animate({left:current*(-boxwidthnum) + 'px'});
 
 };
 });
+//消息闪现
+function fade(){
+  $("#flashes").fadeOut('fast');
+}

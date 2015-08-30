@@ -279,3 +279,10 @@ a:hover{
 .ever{
 	margin-top: 50px;
 }
+.flashes{
+	background-color:  #fff843;
+	color: #332a1c;
+	text-align: center;
+	width: 100%;
+	height: 20px;
+}

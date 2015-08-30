@@ -69,7 +69,7 @@ def home():
         user = User.query.filter_by(username=form.username.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
-            return redirect(url_for('user', username=current_user.username))
+            return redirect(url_for('user', id=current_user.id))
         flash('用户名或密码错误!')
 
     range_book_count = range(len(new_book_list)/6 + 1)
@@ -122,7 +122,6 @@ def search_results():
         """
         get_book_list.append(book)
 
-
     return render_template('search_results.html',
                            get_book_list=get_book_list,
                            search=search)
@@ -141,7 +140,7 @@ def info(name):
             book.user_id = current_user.id
             book.status = True  # 已被借
             book.end = (start + datetime.timedelta(day)).strftime("%Y-%m-%d %H:%M:%S")
-            return redirect(url_for('user', username=current_user.username))
+            return redirect(url_for('user', id=current_user.id))
         else:
             flash('光阴似箭、岁月如梭,时间－你不能篡改她，更不能逆转她!')
     return render_template('info.html', book=book, form=form)
@@ -207,8 +206,8 @@ def logout():
 
 
 # 对登录用户可见
-@app.route('/user/<username>', methods=["POST", "GET"])
-def user(username):
+@app.route('/user/<int:id>', methods=["POST", "GET"])
+def user(id):
     """
     用户个人信息页
         显示该用户历史借阅
@@ -232,7 +231,7 @@ def user(username):
 
     if request.method == "POST":
         """在前端input标签的重定向页面进行处理"""
-        return redirect(url_for('user', username=current_user.username))
+        return redirect(url_for('user', id=current_user.id))
 
     books = Book.query.filter_by(name=request.args.get('back'), user_id=current_user.id).all()
     for book in books:
@@ -241,12 +240,12 @@ def user(username):
         book.end = None
         book.user_id = None
         flash('%s 已归还!' % book.name)
-        return redirect(url_for('user', username=current_user.username))
+        return redirect(url_for('user', id=current_user.id))
 
     range_book_count = range(len(book_list)/3 + 1)
     range_timedonebook_count = range(len(time_done_book)/3 + 1)
 
-    return render_template('user.html', username=username,
+    return render_template('user.html',
                            time_done_book=time_done_book[:2],
                            book_list=book_list,
                            range_book_count=range_book_count,
