@@ -6,17 +6,17 @@
 	<!-- 消息闪现 -->
   {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes>
+    <div class="flashes" id="flashes">
     {% for message in messages %}
-      <li>{{ message }}</li>
+      <div>{{ message }}</div>
     {% endfor %}
-	  </ul>
+	</div>
   {% endif %}
   {% endwith %}
 
   {% block css_file %}<!-- link css file -->{% endblock %}
 </head>
-<body>
+<body onclick="fade()">
   {% block style %}
   <!-- css style in html file -->
   {% endblock %}
@@ -58,7 +58,7 @@
 
 
 				{% if current_user.is_authenticated() %}
-					<li class="nav user"><a href="/user/{{ current_user.username }}">Hi!{{ current_user.username }}</a></li>
+					<li class="nav user"><a href="/user/{{ current_user.id }}">Hi!{{ current_user.username }}</a></li>
 					<li class="nav log"><a href="/logout">LOG OUT</a></li>
 				{% else %}
 					<li class="nav log"><a href="javascript:;" onclick="showBorderLog()">LOG ON</a></li>

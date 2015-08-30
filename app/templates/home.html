@@ -296,7 +296,7 @@
 								<p class="author">{{ book.author }}</p>
 							</a>
 						 		<div class="book_tags">
-						 			<p>借阅者：{{ book.user.username}}</p>
+						 			<a href="/user/{{ book.user.id }}"><p>借阅者：{{ book.user.username}}</p></a>
 									<p>到期时间：{{ book.end }}</p>
 							 	</div>
 						</div>

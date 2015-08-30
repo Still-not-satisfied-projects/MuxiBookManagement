@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% block title %}搜索结果{% endblock %}
 
 {% block css_file %}
   <link href="/static/css/First.css" rel="stylesheet" type="text/css" />
@@ -14,7 +13,7 @@
     <div class="result_bookinformation">
         <div class="left">
           <h4>书名：{{ book.name }}</h4>
-          <p><strong>类别:</strong> {{ book.tag }}</p> 
+          <p><strong>类别:</strong> {{ book.tag }}</p>
           <p>{{ book.summary[:100] }}...<a href="/info/{{ book.name }}"><span>详情</span></a></p>
         </div>
       {% if book.status %}
@@ -22,7 +21,7 @@
       {% else %}
         <span class="result_borrow">未借</span>
       {% endif %}
-     
+
          <div class="result_book">
           <a href="/info/{{ book.name }}">
             <img src={{ book.image }} alt="" class="book">
