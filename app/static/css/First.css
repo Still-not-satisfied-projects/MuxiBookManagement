@@ -190,62 +190,6 @@ a:hover{
 	padding-bottom: 14px;
 	width: 640px;
 }
-
-/*.content>p{
-	display: inline-block;
-	margin-right: 10px;
-}
-.content_nav{
-	display: inline-block;
-	margin-bottom: -19px;
-	text-align: center;
-}
-.content_nav>li {
-	display: inline-block;
-	font-size: 17px;
-	float: left;
-	position: relative;
-}
-.content_nav>li ul{
-	display: none;
-}
-.content_nav>li>a{
-	display: block;
-	height: 35px;
-	color:#332a1c;
-	width: 85px;
-	border-radius: 3px;
-}
-.content_nav>li>a:hover{
-	color: #eee;
-	background-color:#332a1c;
-}
-.content_nav>li.nav:hover ul{
-	display:block;
-	position: absolute;
-	background-color: #eee;
-	width: 640px;
-	z-index: 99;
-	height: 840px;
-}
-.content_nav>li.fe:hover ul{
-		left: -99px;
-}
-.content_nav>li.bd:hover ul{
-	left: -184px;
-}
-.content_nav>li.ds:hover ul{
-	left:-269px;
-}
-.content_nav>li.ad:hover ul{
-	left: -354px;
-}
-.content_nav>li.it:hover ul{
-	left: -439px
-}
-.content_nav>li.ot:hover ul{
-	left: -524px;
-}*/
 .showbox{
 	width: 640px;
 	height: 630px;
