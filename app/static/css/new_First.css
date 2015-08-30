@@ -233,3 +233,121 @@
 	width: 40px;
 }
 /*书籍信息页面*/
+.info_left{
+	width: 500px;
+	text-align: center;
+	display: inline-block;
+
+}
+.info_input input{
+	height: 55px;
+	width: 185px;
+	border: none;
+	border-radius: 5px;
+	padding: 0 55px;
+	font-size: 19px;
+}
+.info_b{
+	position: relative;
+	margin:140px 90px; 
+}
+.info_logo{
+	width: 40px;
+	height: 30px;
+	background: transparent url(../image/borrow.png) no-repeat;
+	-webkit-background-size: 100%;
+	background-size: 100%;
+	position: absolute;
+	top: 12%;
+	right: 9%;	
+}
+.result_sub{
+	line-height: 35px;
+	color: white;
+	background-color:  #332a1c;
+	width: 70px;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	margin-top: 7%;
+	cursor: pointer;
+}
+.info_right{
+	display: inline-block;
+	width: 550px;
+	background: #332a1c;
+	color: #eee;
+}
+.info_content{
+	width: 490px;
+	margin: 20px 34px;
+}
+.info_content h2{
+	color: #fff843;
+	font-size: 25px;
+}
+.info_content p {
+	text-indent: 2em;
+	line-height: 25px;
+}
+.info_book{
+	top: 40%;
+	left: 20%;
+	width: 220px;
+	height: 260px;
+}
+.info_borrowed h2{
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+.info_borrowed p{
+	line-height: 30px;
+}
+/*头像上传*/
+.avanter{
+	width: 200px;
+	height: 250px;
+	position: relative;	
+	overflow: hidden;
+	transition:all,fast;
+	margin-top:30px;
+}
+.avanter img{
+	width: 100%;
+	height: 100%;
+}
+.ava_button{
+	width: 100%;
+	height: 20%;
+	background-color: #332a1c;
+	text-align: center;
+	color: #eee;
+	position: absolute;
+	top: 90%;
+	color: #eee;
+}
+.ava_button:hover{
+	top: 80%;
+
+}
+
+.error{
+	font-size: 200px;
+	font-weight: 900;
+	color: black;
+	margin-bottom: 100px
+}
+#avanter_iframe{
+	display: none;
+	width: 300px;
+	height: 200px;
+	position: absolute;
+	background-color: white;
+	top: 50%;
+	right: 10%;
+}
+#avanter_iframe iframe{
+	width: 100%;
+	height: 100%;
+	border: none;
+}

@@ -191,6 +191,9 @@ a:hover{
 	padding-bottom: 14px;
 	width: 640px;
 }
+.content_right{
+	width: 210px;
+}
 .showbox{
 	width: 640px;
 	height: 630px;

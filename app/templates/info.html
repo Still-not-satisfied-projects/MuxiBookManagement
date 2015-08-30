@@ -10,33 +10,47 @@
 {% block page_content %}
   <div class="container">
     <div class="result_bgc">
-      <div class="left">  
-         
+           {% if current_user.is_authenticated() %}
+              {% if book.status == False %}
+              <div class="result_book info_book">
+                <img src={{ book.image }} alt="" class="book">
+                  <div class="result_book_content">
+                  <p class="title_hid">{{ book.name}}</p>
+                  <p class="author">{{ book.author }}</p>
+                 </div>
+             </div>
+                  <form method="post"class="info_left" onload="content()">
+                        <div class="info_b">
+                            <div class="info_input"> 
+                            {{ form.day }}
+                            {{ form.hidden_tag() }}
+                           
+                            </div>
+                            <label class="info_logo"></label>
+                            <input type="submit" class="result_sub" value="借阅">
+                        </div>
+                  </form>
+                  {% else %}
+                  <div class="info_borrowed info_left">
+                  <p class="error">404</p>
+                   <h2>悄悄地我走了。。不过我一定会回来的!</h2>
+                   <p>借阅者：{{ book.user.username}}</p>
+                   <p>到期时间：{{ book.end }}</p>
+                 </div>
+              {% endif %}
+            {% endif %}
+            <div class="info_right">
+              <div class="info_content">
+                <h2>{{ book.name }}</h2></br>
+                <p>{{ book.author }}</p></br>
+                <p>{{ book.summary}}</p>
+              </div>
+          </div>
 
-      </div>      
     </div>
 </div>
 
-
-
-
-
-
-  <div class='info'>
-    <img src={{ book.image }}>
-    <h3>{{ book.name }}</h3>
-    <h3>{{ book.author }}</h3>
-    <h3>{{ book.summary}}</h3>
-  </div>
-  {% if current_user.is_authenticated() %}
-    {% if book.status == False %}
-        <form method="post">
-            {{ form.hidden_tag() }}
-            {{ form.day }}
-            {{ form.submit }}
-        </form>
-    {% endif %}
-  {% endif %}
+ 
 {% endblock%}
 
 {% block script_file %}
