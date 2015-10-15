@@ -62,7 +62,7 @@ def home():
         new_book_list: 最近录入新书列表(默认为6本, 依据时间[id]排序)
     """
     form = LoginForm()
-    new_book_list = Book.query.order_by('-id').all()
+    new_book_list = Book.query.order_by('-id').all()[:9]
     get_book_list = Book.query.filter_by(status=True).order_by('start desc').all()[:2]
 
     if form.validate_on_submit():
@@ -99,14 +99,13 @@ def search():
 
 
 # 对所有访客可见
-@app.route('/search_results/', methods=["POST", "GET"])
+@app.route('/search_results/')
 def search_results():
     """
     搜索结果页
 
         提供书籍借阅表单
     """
-    form2 = LoginForm()
     get_book_list = []
     search = request.args.get('search')
     results = Book.query.whoosh_search(search, app.config['MAX_SEARCH_RESULTS'])
@@ -125,15 +124,13 @@ def search_results():
 
     return render_template('search_results.html',
                            get_book_list=get_book_list,
-                           search=search,
-                           form2=form2)
+                           search=search)
 
 
 # 对所有访客可见，但只有登录用户可以借阅(html改动)
 @app.route('/info/<name>', methods=["POST", "GET"])
 def info(name):
     form = GetForm()
-    form2 = LoginForm()
     book = Book.query.filter_by(name=name).first()
     if form.validate_on_submit():
         day = form.day.data
@@ -146,7 +143,7 @@ def info(name):
             return redirect(url_for('user', id=current_user.id))
         else:
             flash('光阴似箭、岁月如梭,时间－你不能篡改她，更不能逆转她!')
-    return render_template('info.html', book=book, form=form,  form2=form2)
+    return render_template('info.html', book=book, form=form)
 
 
 # 只对管理员可见

@@ -17,7 +17,7 @@
 	border: transparent solid;
 	overflow: hidden;
 	margin: -10px auto 0 ;
-	padding-bottom: 70px;
+	padding-bottom: 30px;
 }
 a{
 	text-decoration: none;
@@ -233,4 +233,6 @@ a:hover{
 	text-align: center;
 	width: 100%;
 	height: 20px;
+	position: absolute;
+	top: 0;
 }
