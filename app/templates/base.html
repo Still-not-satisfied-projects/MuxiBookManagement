@@ -20,8 +20,8 @@
   {% block style %}
   <!-- css style in html file -->
   {% endblock %}
-  <div >
-  </div>
+
+
 			<div class="header">
 
 				<div class="nav_image">
@@ -56,13 +56,16 @@
 						</div>
 
 
-				{% if current_user.is_authenticated() %}
+				{% if current_user.is_authenticated %}
 					<li class="nav user"><a href="/user/{{ current_user.id }}">Hi!{{ current_user.username }}</a></li>
 					<li class="nav log"><a href="/logout">LOG OUT</a></li>
 				{% else %}
 					<li class="nav log"><a href="javascript:;" onclick="showBorderLog()">LOG ON</a></li>
 						<div id="content_log" class="light_content users">
-				{% block form_content %}{% endblock %}
+				{% block form_content %}
+
+
+				{% endblock %}
 						</div>
 
 				{% endif %}

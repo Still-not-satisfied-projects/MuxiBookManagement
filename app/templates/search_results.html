@@ -36,6 +36,13 @@
   </div>
 </div>
 {% endblock %}
+{% block form_content %}
+
+<div class="prompt">到首页登陆后才能使用哦!</div>
+<div class="promptbox"><img src="/static/image/boss.jpg"></div>
+<div class="btn cancel"><a href="javascript:void(0)" onclick="hideBorderLog()">确认</a></div>
+{% endblock %}
+
 
 {% block script_file %}
   <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>

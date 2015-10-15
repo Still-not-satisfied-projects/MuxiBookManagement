@@ -93,15 +93,25 @@
 </div>	<!--占位-->
 
 <div class="right">
-		<span class="content content_right">个人简介</span>
-    <div class="avanter"><img src="">
-     <div class="ava_button">
-      <a href="javascript:;" onclick="document.getElementById('avanter_iframe').style.display='block'">上传头像</a>
-     </div> 
-   </div>
-</div>
-<div id="avanter_iframe">
-  <iframe src="/upload"></iframe>
+     <span class="content content_right">已经过期</span>
+      {% for book in get_book_list %}
+         <div class="new_book">
+          <a href="#"><img src={{ book.image }} alt="" class="book"></a>
+            <div class="book_information ">
+              <a href="#">
+                <p class="title">{{ book.name }}</p>
+
+                <p class="author">{{ book.author }}</p>
+              </a>
+                <div class="book_tags">
+                  <a href="/user/{{ book.user.id }}"><p>借阅者：{{ book.user.username}}</p></a>
+                  <p>到期时间：{{ book.end }}</p>
+                </div>
+            </div>
+
+        </div>
+
+      {% endfor %}
 </div>
 </div>
 </div>
